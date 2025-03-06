@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="ru">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,53 +54,53 @@
         .section:nth-child(odd) {
             background: #fde2e4;
         }
+
+        /* Новый белый векторный элемент (горочка) */
         .wave {
             position: absolute;
             bottom: 0;
             width: 100%;
-            height: 100px;
-            background: url('wave.svg') repeat-x;
-            background-size: contain;
+            height: 80px;
+            background: #ffffff;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
             z-index: 2;
         }
 
-
-        <!-- Стили для второго контейнера -->
-
+        /* Стили для второго контейнера */
         .results-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    background: linear-gradient(135deg, #ffe0eb, #d8f3ff);
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-}
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            background: linear-gradient(135deg, #ffe0eb, #d8f3ff);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
 
-.result {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-}
+        .result {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
 
-.result:hover {
-    transform: translateY(-5px);
-}
+        .result:hover {
+            transform: translateY(-5px);
+        }
 
-.icon {
-    font-size: 32px;
-}
+        .icon {
+            font-size: 32px;
+        }
 
-.number {
-    font-size: 36px;
-    font-weight: bold;
-    color: #ff4081;
-    margin: 10px 0;
-}
+        .number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ff4081;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -109,12 +110,12 @@
         <img src="yogurt1.png" class="parallax-img" style="top: 20%; left: 15%;">
         <img src="yogurt2.png" class="parallax-img" style="top: 50%; left: 50%;">
         <img src="yogurt1.png" class="parallax-img" style="top: 70%; left: 80%;">
+        <!-- Новый элемент волны -->
         <div class="wave"></div>
     </div>
     
     <!-- Контейнер 2 -->
-
-     <div class="results-container">
+    <div class="results-container">
         <div class="result">
             <div class="icon">📈</div>
             <div class="number">10%</div>
