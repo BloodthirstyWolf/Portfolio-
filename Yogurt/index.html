@@ -25,7 +25,7 @@
             z-index: 5;
         }
         .hero {
-            background: linear-gradient(to bottom, #dbeafe, #fde2e4);
+            background: #fee6ed; /* Сплошной розовый фон */
             flex-direction: column;
             text-align: center;
             position: relative;
@@ -55,13 +55,13 @@
             background: #fde2e4;
         }
 
-        /* Новый градиентный фон с обновленным цветом */
+        /* Новый градиентный фон для второго контейнера */
         .gradient-background {
             position: absolute;
             bottom: 0;
             width: 100%;
             height: 100px;
-            background: linear-gradient(to top, #80c7f7, #fee6ed); /* Розовый #fee6ed и голубой #80c7f7 */
+            background: linear-gradient(to top, #fee6ed, #dbeafe); /* Градиент от розового до голубого */
             z-index: 2;
         }
 
@@ -70,7 +70,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
-            background: linear-gradient(135deg, #ffe0eb, #d8f3ff);
+            background: linear-gradient(to bottom, #fee6ed, #dbeafe); /* Градиент от розового до голубого */
             padding: 30px;
             border-radius: 16px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -109,7 +109,7 @@
         <img src="yogurt1.png" class="parallax-img" style="top: 20%; left: 15%;">
         <img src="yogurt2.png" class="parallax-img" style="top: 50%; left: 50%;">
         <img src="yogurt1.png" class="parallax-img" style="top: 70%; left: 80%;">
-        <!-- Новый градиентный фон с обновленным цветом -->
+        <!-- Новый сплошной фон для первого контейнера -->
         <div class="gradient-background"></div>
     </div>
     
