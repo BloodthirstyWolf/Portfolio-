@@ -55,15 +55,19 @@
         }
 
         .hero h1 {
-            font-size: 8vw; /* Размер шрифта будет зависеть от ширины экрана */
+            font-size: clamp(3rem, 8vw, 6rem); /* Адаптивный размер шрифта */
             color: white;
             margin: 0;
+            white-space: nowrap; /* Предотвращаем разрыв текста */
+            font-family: 'Impact', sans-serif; /* Шрифт для заголовка */
         }
 
         .hero p {
-            font-size: 3vw; /* Размер шрифта подстраивается относительно ширины экрана */
+            font-size: clamp(1.5rem, 3vw, 3rem); /* Адаптивный размер шрифта */
             color: white;
             margin-top: 10px;
+            white-space: nowrap; /* Предотвращаем разрыв текста */
+            font-family: 'Bebas Neue', sans-serif; /* Шрифт для подзаголовка */
         }
 
         .parallax-img {
