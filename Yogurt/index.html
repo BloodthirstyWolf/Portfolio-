@@ -135,16 +135,16 @@
         <p>Публикация привела к росту ссылочной массы и помогла бренду привлечь новых клиентов.</p>
         
         <!-- Добавляем 5 новых изображений с параллакс-эффектом -->
-        <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 10%; left: 10%;">
-        <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 40%; left: 30%;">
-        <img src="yogurt5.png" class="parallax-img parallax-img-small" style="top: 60%; left: 70%;">
-        <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 80%; left: 40%;">
-        <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 20%; left: 70%;">
+        <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 10%; left: 10%;" data-speed="10">
+        <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 40%; left: 30%;" data-speed="8">
+        <img src="yogurt5.png" class="parallax-img parallax-img-small" style="top: 60%; left: 70%;" data-speed="6">
+        <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 80%; left: 40%;" data-speed="4">
+        <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 20%; left: 70%;" data-speed="2">
         
         <!-- Большие изображения для параллакса -->
-        <img src="yogurt1.png" class="parallax-img" style="top: 60%; left: 5%;">
-        <img src="yogurt2.png" class="parallax-img" style="top: -10%; left: 50%;">
-        <img src="yogurt1.png" class="parallax-img" style="top: 70%; left: 80%;">
+        <img src="yogurt1.png" class="parallax-img" style="top: 60%; left: 5%;" data-speed="15">
+        <img src="yogurt2.png" class="parallax-img" style="top: -10%; left: 50%;" data-speed="12">
+        <img src="yogurt1.png" class="parallax-img" style="top: 70%; left: 80%;" data-speed="10">
     </div>
     
     <!-- Второй контейнер -->
@@ -176,7 +176,7 @@
     <script>
         document.addEventListener("mousemove", (e) => {
             document.querySelectorAll(".parallax-img").forEach(img => {
-                let speed = 5;
+                let speed = parseFloat(img.getAttribute("data-speed"));
                 let x = (window.innerWidth - e.pageX * speed) / 100;
                 let y = (window.innerHeight - e.pageY * speed) / 100;
                 img.style.transform = `translate(${x}px, ${y}px)`;
