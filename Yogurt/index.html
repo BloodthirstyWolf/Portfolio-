@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кейс: Продвижение кафе</title>
     <style>
+       
         * {
             margin: 0;
             padding: 0;
@@ -40,8 +41,6 @@
             color: white;
             margin-top: 10px;
         }
-
-        /* Параллакс изображения */
         .parallax-img {
             position: absolute;
             width: 15vw;
@@ -51,34 +50,10 @@
             pointer-events: none;
         }
 
-        .parallax-img.bg-1 {
-            top: 20%;
-            left: 5%;
-            z-index: 1;
-        }
-
-        .parallax-img.bg-2 {
-            top: 10%;
-            left: 20%;
-            z-index: 2;
-        }
-
-        .parallax-img.bg-3 {
-            top: 60%;
-            left: 50%;
-            z-index: 3;
-        }
-
-        .parallax-img.bg-4 {
-            top: 40%;
-            left: 70%;
-            z-index: 4;
-        }
-
-        .parallax-img.bg-5 {
-            top: 80%;
-            left: 85%;
-            z-index: 5;
+        /* Новые изображения для параллакса */
+        .parallax-img-small {
+            width: 8vw; /* Меньше по размеру */
+            z-index: 2; /* Меньше, чем у текста */
         }
 
         /* Новый фон для второго контейнера */
@@ -158,11 +133,18 @@
     <div class="section hero">
         <h1>Как я помогла кафе продвинуть уникальный продукт</h1>
         <p>Публикация привела к росту ссылочной массы и помогла бренду привлечь новых клиентов.</p>
-        <img src="yogurt3.webp" class="parallax-img bg-1">
-        <img src="yogurt4.webp" class="parallax-img bg-2">
-        <img src="yogurt5.png" class="parallax-img bg-3">
-        <img src="yogurt1.png" class="parallax-img bg-4">
-        <img src="yogurt2.png" class="parallax-img bg-5">
+        
+        <!-- Добавляем 5 новых изображений с параллакс-эффектом -->
+        <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 10%; left: 10%;">
+        <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 40%; left: 30%;">
+        <img src="yogurt5.png" class="parallax-img parallax-img-small" style="top: 60%; left: 70%;">
+        <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 80%; left: 40%;">
+        <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 20%; left: 70%;">
+        
+        <!-- Большие изображения для параллакса -->
+        <img src="yogurt1.png" class="parallax-img" style="top: 60%; left: 5%;">
+        <img src="yogurt2.png" class="parallax-img" style="top: -10%; left: 50%;">
+        <img src="yogurt1.png" class="parallax-img" style="top: 70%; left: 80%;">
     </div>
     
     <!-- Второй контейнер -->
@@ -193,16 +175,8 @@
 
     <script>
         document.addEventListener("mousemove", (e) => {
-            // Слабый параллакс для задних изображений
-            document.querySelectorAll(".parallax-img.bg-1, .parallax-img.bg-2").forEach(img => {
-                let speed = 2; // Слабый параллакс
-                let x = (window.innerWidth - e.pageX * speed) / 100;
-                let y = (window.innerHeight - e.pageY * speed) / 100;
-                img.style.transform = `translate(${x}px, ${y}px)`;
-            });
-            // Сильный параллакс для передних изображений
-            document.querySelectorAll(".parallax-img.bg-3, .parallax-img.bg-4, .parallax-img.bg-5").forEach(img => {
-                let speed = 5; // Сильный параллакс
+            document.querySelectorAll(".parallax-img").forEach(img => {
+                let speed = 5;
                 let x = (window.innerWidth - e.pageX * speed) / 100;
                 let y = (window.innerHeight - e.pageY * speed) / 100;
                 img.style.transform = `translate(${x}px, ${y}px)`;
