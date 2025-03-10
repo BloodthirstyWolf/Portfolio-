@@ -52,22 +52,27 @@
             text-align: center;
             position: relative;
             margin: 0 auto;
+            display: inline-block;
+            overflow: hidden;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem); /* Адаптивный размер шрифта */
+            font-size: 8vw; /* Адаптивный размер шрифта */
             color: white;
             margin: 0;
             white-space: nowrap; /* Предотвращаем разрыв текста */
             font-family: 'Impact', sans-serif; /* Шрифт для заголовка */
+            text-align: center;
+            width: fit-content;
         }
 
         .hero p {
-            font-size: clamp(1rem, 3vw, 2rem); /* Адаптивный размер шрифта */
+            font-size: 4vw; /* Адаптивный размер шрифта */
             color: white;
             margin-top: 10px;
             white-space: nowrap; /* Предотвращаем разрыв текста */
             font-family: 'Bebas Neue', sans-serif; /* Шрифт для подзаголовка */
+            width: fit-content;
         }
 
         .parallax-img {
