@@ -48,11 +48,9 @@
             z-index: 100;
             pointer-events: none;
         }
-        
+
         /* Новый фон для второго контейнера */
         .results-container {
-            position: absolute;
-            top: 100vh; /* Позиционируем контейнер сразу после первого */
             width: 100vw;
             height: 100vh;
             background: linear-gradient(to bottom, #fee6ed, #dbeafe); /* Градиент от розового до голубого */
@@ -62,18 +60,23 @@
             padding: 30px;
             align-items: center;
             justify-items: center;
+            position: relative;
         }
 
         /* Результаты - белые квадраты с круглыми краями */
         .result {
             background: white;
-            width: 200px;
-            height: 200px;
+            width: 250px;  /* Увеличиваем размер статистики */
+            height: 250px;
             border-radius: 16px;
             text-align: center;
-            padding: 20px;
+            padding: 30px; /* Добавляем больше пространства внутри */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .result:hover {
@@ -81,19 +84,40 @@
         }
 
         .icon {
-            font-size: 32px;
+            font-size: 40px; /* Увеличиваем иконки */
         }
 
         .number {
-            font-size: 36px;
+            font-size: 48px; /* Увеличиваем число */
             font-weight: bold;
             color: #ff4081;
             margin: 10px 0;
         }
 
+        /* Мобильная версия */
+        @media (max-width: 768px) {
+            .results-container {
+                grid-template-columns: 1fr; /* В столбик */
+            }
+
+            .result {
+                width: 90%; /* Делаем статистику шире на маленьких экранах */
+                height: auto;
+                margin-bottom: 20px;
+            }
+
+            .icon {
+                font-size: 36px;
+            }
+
+            .number {
+                font-size: 42px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Первый контейнер -->
     <div class="section hero">
         <h1>Как я помогла кафе продвинуть уникальный продукт</h1>
         <p>Публикация привела к росту ссылочной массы и помогла бренду привлечь новых клиентов.</p>
@@ -102,7 +126,7 @@
         <img src="yogurt1.png" class="parallax-img" style="top: 70%; left: 80%;">
     </div>
     
-    <!-- Контейнер 2 -->
+    <!-- Второй контейнер -->
     <div class="results-container">
         <div class="result">
             <div class="icon">📈</div>
