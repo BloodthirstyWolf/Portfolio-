@@ -75,6 +75,37 @@
             width: 100%;
             overflow: hidden;
         }
+        .hero-text {
+    width: 80%; /* Ограничиваем ширину */
+    max-width: 1000px; /* Или другое значение, если есть ограничение */
+    text-align: center;
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-text h1, .hero-text p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hero-text h1 {
+    font-size: 10vw;
+    font-family: 'Impact', sans-serif;
+    color: white;
+    width: fit-content;
+}
+
+.hero-text p {
+    font-size: 5vw;
+    font-family: 'Bebas Neue', sans-serif;
+    color: white;
+    width: fit-content;
+    transform: scaleX(calc(var(--h1-width) / var(--p-width))); /* Подстраиваем ширину */
+}
 
         /* Для большого экрана, можно уменьшить размер */
         @media (min-width: 768px) {
@@ -229,6 +260,19 @@
                 img.style.transform = `translate(${x}px, ${y}px)`;
             });
         });
+           function adjustTextWidth() {
+        let h1 = document.querySelector(".hero-text h1");
+        let p = document.querySelector(".hero-text p");
+
+        let h1Width = h1.offsetWidth;
+        let pWidth = p.offsetWidth;
+
+        document.documentElement.style.setProperty('--h1-width', h1Width);
+        document.documentElement.style.setProperty('--p-width', pWidth);
+    }
+
+    window.addEventListener("load", adjustTextWidth);
+    window.addEventListener("resize", adjustTextWidth);
     </script>
 </body>
 </html>
