@@ -51,23 +51,34 @@
             pointer-events: none;
         }
 
-        .parallax-img.background1 {
-            left: 10%;
+        .parallax-img.bg-1 {
             top: 20%;
-            width: 25vw;
-            z-index: 10;
+            left: 5%;
+            z-index: 1;
         }
-        .parallax-img.background2 {
-            left: 50%;
-            top: 30%;
-            width: 20vw;
-            z-index: 5;
+
+        .parallax-img.bg-2 {
+            top: 10%;
+            left: 20%;
+            z-index: 2;
         }
-        .parallax-img.background3 {
-            left: 70%;
+
+        .parallax-img.bg-3 {
             top: 60%;
-            width: 15vw;
-            z-index: 15;
+            left: 50%;
+            z-index: 3;
+        }
+
+        .parallax-img.bg-4 {
+            top: 40%;
+            left: 70%;
+            z-index: 4;
+        }
+
+        .parallax-img.bg-5 {
+            top: 80%;
+            left: 85%;
+            z-index: 5;
         }
 
         /* Новый фон для второго контейнера */
@@ -139,7 +150,7 @@
                 font-size: 42px;
             }
         }
-
+    
     </style>
 </head>
 <body>
@@ -147,12 +158,11 @@
     <div class="section hero">
         <h1>Как я помогла кафе продвинуть уникальный продукт</h1>
         <p>Публикация привела к росту ссылочной массы и помогла бренду привлечь новых клиентов.</p>
-        <!-- Добавление изображений для параллакса -->
-        <img src="yogurt3.webp" class="parallax-img background1">
-        <img src="yogurt4.webp" class="parallax-img background2">
-        <img src="yogurt5.png" class="parallax-img background3">
-          <img src="yogurt3.webp" class="parallax-img background4">
-        <img src="yogurt4.webp" class="parallax-img background5">
+        <img src="yogurt3.webp" class="parallax-img bg-1">
+        <img src="yogurt4.webp" class="parallax-img bg-2">
+        <img src="yogurt5.png" class="parallax-img bg-3">
+        <img src="yogurt1.png" class="parallax-img bg-4">
+        <img src="yogurt2.png" class="parallax-img bg-5">
     </div>
     
     <!-- Второй контейнер -->
@@ -183,15 +193,16 @@
 
     <script>
         document.addEventListener("mousemove", (e) => {
-            document.querySelectorAll(".parallax-img").forEach(img => {
-                let speed = 0;
-                if (img.classList.contains('background1')) {
-                    speed = 10;  // Ближайшее изображение двигается быстрее
-                } else if (img.classList.contains('background2')) {
-                    speed = 5;   // Среднее изображение двигается чуть медленнее
-                } else if (img.classList.contains('background3')) {
-                    speed = 2;   // Самое дальнее изображение двигается медленно
-                }
+            // Слабый параллакс для задних изображений
+            document.querySelectorAll(".parallax-img.bg-1, .parallax-img.bg-2").forEach(img => {
+                let speed = 2; // Слабый параллакс
+                let x = (window.innerWidth - e.pageX * speed) / 100;
+                let y = (window.innerHeight - e.pageY * speed) / 100;
+                img.style.transform = `translate(${x}px, ${y}px)`;
+            });
+            // Сильный параллакс для передних изображений
+            document.querySelectorAll(".parallax-img.bg-3, .parallax-img.bg-4, .parallax-img.bg-5").forEach(img => {
+                let speed = 5; // Сильный параллакс
                 let x = (window.innerWidth - e.pageX * speed) / 100;
                 let y = (window.innerHeight - e.pageY * speed) / 100;
                 img.style.transform = `translate(${x}px, ${y}px)`;
