@@ -50,27 +50,31 @@
         }
 
         /* Новый фон для второго контейнера */
-        .results-container {
+        .container2 {
             width: 100vw;
             height: 100vh;
             background: linear-gradient(to bottom, #fee6ed, #dbeafe); /* Градиент от розового до голубого */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Контейнер с результатами */
+        .result-container {
+            width: 50%; /* Ширина 50%, можно настроить */
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
-            padding: 30px;
-            align-items: center;
-            justify-items: center;
-            position: relative;
+            text-align: center;
         }
 
         /* Результаты - белые квадраты с круглыми краями */
         .result {
             background: white;
-            width: 250px;  /* Увеличиваем размер статистики */
+            width: 250px;  /* Размер статистики */
             height: 250px;
             border-radius: 16px;
-            text-align: center;
-            padding: 30px; /* Добавляем больше пространства внутри */
+            padding: 30px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out;
             display: flex;
@@ -88,7 +92,7 @@
         }
 
         .number {
-            font-size: 48px; /* Увеличиваем число */
+            font-size: 48px; /* Увеличиваем числа */
             font-weight: bold;
             color: #ff4081;
             margin: 10px 0;
@@ -96,8 +100,8 @@
 
         /* Мобильная версия */
         @media (max-width: 768px) {
-            .results-container {
-                grid-template-columns: 1fr; /* В столбик */
+            .result-container {
+                grid-template-columns: 1fr; /* В столбик на мобильных */
             }
 
             .result {
@@ -127,26 +131,28 @@
     </div>
     
     <!-- Второй контейнер -->
-    <div class="results-container">
-        <div class="result">
-            <div class="icon">📈</div>
-            <div class="number">10%</div>
-            <p>Рост трафика извне</p>
-        </div>
-        <div class="result">
-            <div class="icon">🕒</div>
-            <div class="number">+35%</div>
-            <p>Увеличение времени на странице</p>
-        </div>
-        <div class="result">
-            <div class="icon">📝</div>
-            <div class="number">5+</div>
-            <p>Статей в топе</p>
-        </div>
-        <div class="result">
-            <div class="icon">💬</div>
-            <div class="number">X2</div>
-            <p>Рост комментариев</p>
+    <div class="container2">
+        <div class="result-container">
+            <div class="result">
+                <div class="icon">📈</div>
+                <div class="number">10%</div>
+                <p>Рост трафика извне</p>
+            </div>
+            <div class="result">
+                <div class="icon">🕒</div>
+                <div class="number">+35%</div>
+                <p>Увеличение времени на странице</p>
+            </div>
+            <div class="result">
+                <div class="icon">📝</div>
+                <div class="number">5+</div>
+                <p>Статей в топе</p>
+            </div>
+            <div class="result">
+                <div class="icon">💬</div>
+                <div class="number">X2</div>
+                <p>Рост комментариев</p>
+            </div>
         </div>
     </div>
 
