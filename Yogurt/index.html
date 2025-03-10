@@ -48,49 +48,32 @@
             z-index: 100;
             pointer-events: none;
         }
-        .section:nth-child(even) {
-            background: #dbeafe;
-        }
-        .section:nth-child(odd) {
-            background: #fde2e4;
-        }
-
-        /* Новый градиентный фон для второго контейнера */
-        .gradient-background {
+        
+        /* Новый фон для второго контейнера */
+        .results-container {
             position: absolute;
-            top: 0;
+            top: 100vh; /* Позиционируем контейнер сразу после первого */
             width: 100vw;
             height: 100vh;
             background: linear-gradient(to bottom, #fee6ed, #dbeafe); /* Градиент от розового до голубого */
-            z-index: 1;
-        }
-
-        /* Стили для второго контейнера */
-        .results-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
-            width: 80vw;
-            height: 60vh;
-            z-index: 2;
+            padding: 30px;
+            align-items: center;
+            justify-items: center;
         }
 
+        /* Результаты - белые квадраты с круглыми краями */
         .result {
             background: white;
-            padding: 40px;
+            width: 200px;
+            height: 200px;
             border-radius: 16px;
             text-align: center;
+            padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
             transition: transform 0.3s ease-in-out;
-            height: 100%;
         }
 
         .result:hover {
@@ -107,6 +90,7 @@
             color: #ff4081;
             margin: 10px 0;
         }
+
     </style>
 </head>
 <body>
@@ -116,8 +100,6 @@
         <img src="yogurt1.png" class="parallax-img" style="top: 20%; left: 15%;">
         <img src="yogurt2.png" class="parallax-img" style="top: 50%; left: 50%;">
         <img src="yogurt1.png" class="parallax-img" style="top: 70%; left: 80%;">
-        <!-- Новый сплошной фон для первого контейнера -->
-        <div class="gradient-background"></div>
     </div>
     
     <!-- Контейнер 2 -->
