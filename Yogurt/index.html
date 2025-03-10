@@ -5,72 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кейс: Продвижение кафе</title>
     <style>
-
-@font-face {
-    font-family: 'Impact';
-    src: url('Impact_Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Bebas Neue';
-    src: url('Bebas_Neue.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: Arial, sans-serif;
             background: white;
             overflow-x: hidden;
         }
-
-        /* Контейнер 1 с розовым фоном */
+        /* Контейнер с розовым фоном */
         .container1 {
-            background: #fee6ed; /* Сплошной розовый фон */
             width: 100vw;
             height: 100vh;
-            position: relative;
-        }
-
-        /* Секция hero */
-        .hero {
+            background: #fee6ed; /* Сплошной розовый фон */
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
-            width: 100%;
-            height: 100%;
-            z-index: 5;
         }
 
-        /* Ограничивающий контейнер для текста */
-        .text-container {
-            width: 80%; /* Ограничиваем ширину контейнера до 80% */
-            text-align: center;
-            z-index: 10;
+        /* Контейнер для заголовка и подзаголовка */
+        .hero-container {
+            width: 80%; /* Ограничиваем ширину до 80% */
+            text-align: center; /* Выравнивание текста по центру */
         }
 
         /* Заголовок */
         .hero h1 {
-            font-size: clamp(2rem, 8vw, 4rem); /* Размер шрифта подстраивается в зависимости от ширины окна */
+            font-size: 3rem;
             color: white;
+            white-space: nowrap; /* Запрещаем перенос на новую строку */
             font-family: 'Impact', sans-serif;
+            margin-bottom: 10px;
+            width: fit-content; /* Подстраиваем ширину по содержимому */
+            display: inline-block; /* Чтобы fit-content работал */
         }
 
         /* Подзаголовок */
         .hero p {
-            font-size: clamp(1rem, 4vw, 2rem); /* Размер шрифта подстраивается в зависимости от ширины окна */
+            font-size: 1.5rem;
             color: white;
-            margin-top: 10px;
-            font-family: 'Bebas Neue', sans-serif;
+            white-space: nowrap; /* Запрещаем перенос на новую строку */
+            font-family: 'Impact', sans-serif;
+            width: fit-content; /* Подстраиваем ширину по содержимому */
+            display: inline-block; /* Чтобы fit-content работал */
         }
 
         /* Параллакс-изображения */
@@ -79,14 +59,8 @@
             width: 15vw;
             height: auto;
             transition: transform 0.1s ease-out;
-            z-index: 100; /* Большие изображения должны быть сверху */
+            z-index: 100;
             pointer-events: none;
-        }
-
-        /* Новые изображения для параллакса (мелкие) */
-        .parallax-img-small {
-            width: 10vw; /* Меньше по размеру */
-            z-index: -5; /* Эти изображения будут ниже, чем текст */
         }
 
         /* Новый фон для второго контейнера */
@@ -158,31 +132,15 @@
                 font-size: 42px;
             }
         }
-    
     </style>
 </head>
 <body>
-
-    <!-- Контейнер 1 с розовым фоном -->
+    <!-- Первый контейнер -->
     <div class="container1">
-        <!-- Секция hero с ограничением текста -->
-        <div class="hero">
-            <div class="text-container">
-                <h1>Как я помогла кафе продвинуть уникальный продукт</h1>
-                <p>Публикация привела к росту ссылочной массы и помогла бренду привлечь новых клиентов.</p>
-            </div>
-
-            <!-- Параллакс-изображения -->
-            <img src="yogurt1.png" class="parallax-img" style="top: 60%; left: 5%;" data-speed="15">
-            <img src="yogurt2.png" class="parallax-img" style="top: -10%; left: 50%;" data-speed="12">
-            <img src="yogurt1.png" class="parallax-img" style="top: 90%; left: 80%;" data-speed="10">
-
-            <!-- Дополнительные параллакс-изображения -->
-            <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 10%; left: 10%;" data-speed="10">
-            <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 40%; left: 50%;" data-speed="8">
-            <img src="yogurt5.png" class="parallax-img parallax-img-small" style="top: 60%; left: 80%;" data-speed="6">
-            <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 80%; left: 40%;" data-speed="4">
-            <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 10%; left: 0%;" data-speed="2">
+        <!-- Контейнер для заголовка и подзаголовка -->
+        <div class="hero-container">
+            <h1>Как я помогла кафе продвинуть уникальный продукт</h1>
+            <p>Публикация привела к росту ссылочной массы и помогла бренду привлечь новых клиентов.</p>
         </div>
     </div>
     
@@ -211,7 +169,7 @@
             </div>
         </div>
     </div>
-
+    
     <script>
         document.addEventListener("mousemove", (e) => {
             document.querySelectorAll(".parallax-img").forEach(img => {
