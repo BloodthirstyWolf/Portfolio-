@@ -5,21 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кейс: Продвижение кафе</title>
     <style>
+        @font-face {
+            font-family: 'Impact';
+            src: url('Impact_Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
 
-@font-face {
-    font-family: 'Impact';
-    src: url('Impact_Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Bebas Neue';
-    src: url('Bebas_Neue.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
+        @font-face {
+            font-family: 'Bebas Neue';
+            src: url('Bebas_Neue.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
         
         * {
             margin: 0;
@@ -40,37 +38,34 @@
             position: relative;
             z-index: 5;
         }
-        /* Контейнер с розовым фоном */
-        .container1 {
+        .hero {
             background: #fee6ed; /* Сплошной розовый фон */
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            z-index: 10;
         }
 
-        /* Контейнер с ограничением ширины */
-        .hero {
-            background: transparent;
-            width: 80%; /* Ограничиваем ширину до 80% */
+        .hero .hero-text {
+            width: 100%;
+            max-width: 80%; /* Ограничиваем максимальную ширину */
             text-align: center;
-            white-space: nowrap; /* Останавливаем перенос текста */
+            position: relative;
+            margin: 0 auto;
         }
-        .hero h1, .hero p {
-            font-family: 'Impact', sans-serif;
-            font-size: 3rem;
+
+        .hero h1 {
+            font-size: 8vw; /* Размер шрифта будет зависеть от ширины экрана */
             color: white;
             margin: 0;
-            text-align: center;
-            display: inline-block;
-            white-space: nowrap;
-            width: fit-content;
         }
+
         .hero p {
-            font-size: 1.5rem;
+            font-size: 3vw; /* Размер шрифта подстраивается относительно ширины экрана */
+            color: white;
+            margin-top: 10px;
         }
-        
+
         .parallax-img {
             position: absolute;
             width: 15vw;
@@ -160,13 +155,12 @@
 </head>
 <body>
     <!-- Первый контейнер -->
-    <div class="container1">
-        <!-- Контейнер с текстом -->
-        <div class="hero">
+    <div class="section hero">
+        <div class="hero-text">
             <h1>Как я помогла кафе продвинуть уникальный продукт</h1>
             <p>Публикация привела к росту ссылочной массы и помогла бренду привлечь новых клиентов.</p>
         </div>
-
+        
         <!-- Добавляем 5 новых изображений с параллакс-эффектом -->
         <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 10%; left: 10%;" data-speed="10">
         <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 40%; left: 50%;" data-speed="8">
