@@ -35,11 +35,13 @@
         .hero h1 {
             font-size: 3rem;
             color: white;
+            z-index: 0;
         }
         .hero p {
             font-size: 1.5rem;
             color: white;
             margin-top: 10px;
+            z-index: 0;
         }
         .parallax-img {
             position: absolute;
@@ -52,8 +54,8 @@
 
         /* Новые изображения для параллакса (мелкие) */
         .parallax-img-small {
-            width: 8vw; /* Меньше по размеру */
-            z-index: 1; /* Эти изображения будут ниже, чем текст */
+            width: 10vw; /* Меньше по размеру */
+            z-index: -5; /* Эти изображения будут ниже, чем текст */
         }
 
         /* Новый фон для второго контейнера */
