@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кейс: Продвижение кафе</title>
     <style>
-       
         * {
             margin: 0;
             padding: 0;
@@ -41,6 +40,8 @@
             color: white;
             margin-top: 10px;
         }
+
+        /* Параллакс изображения */
         .parallax-img {
             position: absolute;
             width: 15vw;
@@ -48,6 +49,25 @@
             transition: transform 0.1s ease-out;
             z-index: 100;
             pointer-events: none;
+        }
+
+        .parallax-img.background1 {
+            left: 10%;
+            top: 20%;
+            width: 25vw;
+            z-index: 10;
+        }
+        .parallax-img.background2 {
+            left: 50%;
+            top: 30%;
+            width: 20vw;
+            z-index: 5;
+        }
+        .parallax-img.background3 {
+            left: 70%;
+            top: 60%;
+            width: 15vw;
+            z-index: 15;
         }
 
         /* Новый фон для второго контейнера */
@@ -119,7 +139,7 @@
                 font-size: 42px;
             }
         }
-    
+
     </style>
 </head>
 <body>
@@ -127,9 +147,12 @@
     <div class="section hero">
         <h1>Как я помогла кафе продвинуть уникальный продукт</h1>
         <p>Публикация привела к росту ссылочной массы и помогла бренду привлечь новых клиентов.</p>
-        <img src="yogurt1.png" class="parallax-img" style="top: 60%; left: 5%;">
-        <img src="yogurt2.png" class="parallax-img" style="top: -10%; left: 50%;">
-        <img src="yogurt1.png" class="parallax-img" style="top: 70%; left: 80%;">
+        <!-- Добавление изображений для параллакса -->
+        <img src="yogurt3.webp" class="parallax-img background1">
+        <img src="yogurt4.webp" class="parallax-img background2">
+        <img src="yogurt5.png" class="parallax-img background3">
+          <img src="yogurt3.webp" class="parallax-img background4">
+        <img src="yogurt4.webp" class="parallax-img background5">
     </div>
     
     <!-- Второй контейнер -->
@@ -161,7 +184,14 @@
     <script>
         document.addEventListener("mousemove", (e) => {
             document.querySelectorAll(".parallax-img").forEach(img => {
-                let speed = 5;
+                let speed = 0;
+                if (img.classList.contains('background1')) {
+                    speed = 10;  // Ближайшее изображение двигается быстрее
+                } else if (img.classList.contains('background2')) {
+                    speed = 5;   // Среднее изображение двигается чуть медленнее
+                } else if (img.classList.contains('background3')) {
+                    speed = 2;   // Самое дальнее изображение двигается медленно
+                }
                 let x = (window.innerWidth - e.pageX * speed) / 100;
                 let y = (window.innerHeight - e.pageY * speed) / 100;
                 img.style.transform = `translate(${x}px, ${y}px)`;
