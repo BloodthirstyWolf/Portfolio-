@@ -220,39 +220,53 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateParallax(x, y) {
         parallaxImages.forEach(img => {
             let speed = parseFloat(img.getAttribute("data-speed"));
-            let xOffset = (window.innerWidth - x * speed) / 100;
-            let yOffset = (window.innerHeight - y * speed) / 100;
+            let xOffset = ((window.innerWidth - x * speed) / 50); // Увеличена чувствительность
+            let yOffset = ((window.innerHeight - y * speed) / 50); 
+
             img.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
         });
     }
 
-    // Определение мобильного устройства
+    function lerp(start, end, factor) {
+        return start + (end - start) * factor;
+    }
+
+    let targetX = 0, targetY = 0;
+    let currentX = 0, currentY = 0;
+
+    function smoothParallax() {
+        currentX = lerp(currentX, targetX, 0.2); // Быстрее реагирует
+        currentY = lerp(currentY, targetY, 0.2);
+        updateParallax(currentX, currentY);
+        requestAnimationFrame(smoothParallax);
+    }
+    smoothParallax();
+
+    document.addEventListener("mousemove", (e) => {
+        if (!window.isMobile) {
+            targetX = e.pageX;
+            targetY = e.pageY;
+        }
+    });
+
     function isMobileDevice() {
         return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     }
 
-    const isMobile = isMobileDevice();
+    window.isMobile = isMobileDevice();
 
-    // Обработка движения мыши (десктоп)
-    if (!isMobile) {
-        document.addEventListener("mousemove", (e) => {
-            updateParallax(e.pageX, e.pageY);
-        });
-    }
-
-    // Обработка движения телефона (мобильные устройства)
-    if (isMobile && window.DeviceOrientationEvent) {
+    if (window.isMobile && window.DeviceOrientationEvent) {
         window.addEventListener("deviceorientation", (event) => {
             let x = event.gamma; // Наклон влево-вправо (-90 до 90)
             let y = event.beta;  // Наклон вперед-назад (-180 до 180)
 
             if (x !== null && y !== null) {
-                let mappedX = (x + 90) / 180 * window.innerWidth;
-                let mappedY = (y + 90) / 180 * window.innerHeight;
-                updateParallax(mappedX, mappedY);
+                targetX = (x + 90) / 90 * window.innerWidth; // Увеличена реакция
+                targetY = (y + 90) / 90 * window.innerHeight;
             }
         });
     }
+});
 
     // Функция для подгонки текста под контейнер
     function fitTextToContainer(element) {
