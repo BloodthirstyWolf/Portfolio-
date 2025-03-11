@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кейс: Продвижение кафе</title>
     <style>
+
         @font-face {
             font-family: 'Impact';
             src: url('Impact_Regular.ttf') format('truetype');
@@ -39,122 +40,70 @@
             z-index: 5;
         }
         .hero {
-            background: #fee6ed; /* Сплошной розовый фон */
+            background: #fee6ed;
             flex-direction: column;
             text-align: center;
             position: relative;
             z-index: 10;
         }
-
-        .hero .hero-text {
-            width: 100%;
-            max-width: 80%; /* Ограничиваем максимальную ширину */
+        .hero-text {
+            width: 80%;
+            max-width: 1000px;
             text-align: center;
             position: relative;
             margin: 0 auto;
-            display: inline-block;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-
-        .hero h1 {
-            font-size: 10vw; /* Адаптивный размер шрифта, чтобы текст занимал 10% от ширины экрана */
+        .hero-text h1, .hero-text p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .hero-text h1 {
+            font-size: 10vw;
+            font-family: 'Impact', sans-serif;
             color: white;
-            margin: 0;
-            white-space: nowrap; /* Предотвращаем разрыв текста */
-            font-family: 'Impact', sans-serif; /* Шрифт для заголовка */
-            width: 100%;
-            overflow: hidden;
+            width: fit-content;
         }
-
-        .hero p {
-            font-size: 5vw; /* Адаптивный размер шрифта */
+        .hero-text p {
+            font-size: 5vw;
+            font-family: 'Bebas Neue', sans-serif;
             color: white;
-            margin-top: 10px;
-            white-space: nowrap; /* Предотвращаем разрыв текста */
-            font-family: 'Bebas Neue', sans-serif; /* Шрифт для подзаголовка */
-            width: 100%;
-            overflow: hidden;
+            width: fit-content;
+            transform-origin: left center;
         }
-        .hero-text {
-    width: 80%; /* Ограничиваем ширину */
-    max-width: 1000px; /* Или другое значение, если есть ограничение */
-    text-align: center;
-    position: relative;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.hero-text h1, .hero-text p {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.hero-text h1 {
-    font-size: 10vw;
-    font-family: 'Impact', sans-serif;
-    color: white;
-    width: fit-content;
-}
-
-.hero-text p {
-    font-size: 5vw;
-    font-family: 'Bebas Neue', sans-serif;
-    color: white;
-    width: fit-content;
-    transform: scaleX(calc(var(--h1-width) / var(--p-width))); /* Подстраиваем ширину */
-}
-
-        /* Для большого экрана, можно уменьшить размер */
-        @media (min-width: 768px) {
-            .hero h1 {
-                font-size: 4rem;
-            }
-            .hero p {
-                font-size: 2rem;
-            }
-        }
-
         .parallax-img {
             position: absolute;
             width: 15vw;
             height: auto;
             transition: transform 0.1s ease-out;
-            z-index: 100; /* Большие изображения должны быть сверху */
+            z-index: 100;
             pointer-events: none;
         }
-
-        /* Новые изображения для параллакса (мелкие) */
         .parallax-img-small {
-            width: 10vw; /* Меньше по размеру */
-            z-index: -5; /* Эти изображения будут ниже, чем текст */
+            width: 10vw;
+            z-index: -5;
         }
-
-        /* Новый фон для второго контейнера */
         .container2 {
             width: 100vw;
             height: 100vh;
-            background: linear-gradient(to bottom, #fee6ed, #dbeafe); /* Градиент от розового до голубого */
+            background: linear-gradient(to bottom, #fee6ed, #dbeafe);
             display: flex;
             justify-content: center;
             align-items: center;
         }
-
-        /* Контейнер с результатами */
         .result-container {
-            width: 40%; /* Ширина 50%, можно настроить */
+            width: 40%;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10%;
             text-align: center;
         }
-
-        /* Результаты - белые квадраты с круглыми краями */
         .result {
             background: white;
-            width: 250px;  /* Размер статистики */
+            width: 250px;
             height: 250px;
             border-radius: 16px;
             padding: 30px;
@@ -165,67 +114,53 @@
             justify-content: center;
             align-items: center;
         }
-
         .result:hover {
             transform: translateY(-5px);
         }
-
         .icon {
-            font-size: 40px; /* Увеличиваем иконки */
+            font-size: 40px;
         }
-
         .number {
-            font-size: 48px; /* Увеличиваем числа */
+            font-size: 48px;
             font-weight: bold;
             color: #ff4081;
             margin: 10px 0;
         }
-
-        /* Мобильная версия */
         @media (max-width: 768px) {
             .result-container {
-                grid-template-columns: 1fr; /* В столбик на мобильных */
+                grid-template-columns: 1fr;
             }
-
             .result {
-                width: 90%; /* Делаем статистику шире на маленьких экранах */
+                width: 90%;
                 height: auto;
                 margin-bottom: 20px;
             }
-
             .icon {
                 font-size: 36px;
             }
-
             .number {
                 font-size: 42px;
             }
         }
-
+    
     </style>
 </head>
 <body>
-    <!-- Первый контейнер -->
     <div class="section hero">
         <div class="hero-text">
             <h1>Как я помогла кафе продвинуть уникальный продукт</h1>
             <p>Публикация привела к росту ссылочной массы и помогла бренду привлечь новых клиентов.</p>
         </div>
-        
-        <!-- Добавляем 5 новых изображений с параллакс-эффектом -->
         <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 10%; left: 10%;" data-speed="10">
         <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 40%; left: 50%;" data-speed="8">
         <img src="yogurt5.png" class="parallax-img parallax-img-small" style="top: 60%; left: 80%;" data-speed="6">
         <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 80%; left: 40%;" data-speed="4">
-        <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 10%; left: 00%;" data-speed="2">
-        
-        <!-- Большие изображения для параллакса -->
+        <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 10%; left: 0%;" data-speed="2">
         <img src="yogurt1.png" class="parallax-img" style="top: 60%; left: 5%;" data-speed="15">
         <img src="yogurt2.png" class="parallax-img" style="top: -10%; left: 50%;" data-speed="12">
         <img src="yogurt1.png" class="parallax-img" style="top: 90%; left: 80%;" data-speed="10">
     </div>
     
-    <!-- Второй контейнер -->
     <div class="container2">
         <div class="result-container">
             <div class="result">
@@ -252,6 +187,20 @@
     </div>
 
     <script>
+        function adjustTextWidth() {
+            let h1 = document.querySelector(".hero-text h1");
+            let p = document.querySelector(".hero-text p");
+
+            let h1Width = h1.offsetWidth;
+            let pWidth = p.offsetWidth;
+
+            let scaleRatio = h1Width / pWidth;
+            p.style.transform = `scaleX(${scaleRatio})`;
+        }
+
+        document.addEventListener("DOMContentLoaded", adjustTextWidth);
+        window.addEventListener("resize", adjustTextWidth);
+
         document.addEventListener("mousemove", (e) => {
             document.querySelectorAll(".parallax-img").forEach(img => {
                 let speed = parseFloat(img.getAttribute("data-speed"));
@@ -260,19 +209,6 @@
                 img.style.transform = `translate(${x}px, ${y}px)`;
             });
         });
-           function adjustTextWidth() {
-        let h1 = document.querySelector(".hero-text h1");
-        let p = document.querySelector(".hero-text p");
-
-        let h1Width = h1.offsetWidth;
-        let pWidth = p.offsetWidth;
-
-        document.documentElement.style.setProperty('--h1-width', h1Width);
-        document.documentElement.style.setProperty('--p-width', pWidth);
-    }
-
-    window.addEventListener("load", adjustTextWidth);
-    window.addEventListener("resize", adjustTextWidth);
     </script>
 </body>
 </html>
