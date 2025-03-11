@@ -1,3 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кейс: Продвижение кафе</title>
+    <style>
+        @font-face {
+            font-family: 'Impact';
+            src: url('Impact_Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Bebas Neue';
+            src: url('Bebas_Neue.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: white;
+            overflow-x: hidden;
+        }
+        .section {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 5;
+        }
+        .hero {
+            background: #fee6ed; /* Сплошной розовый фон */
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+     
+        .hero .hero-text {
+            z-index: 0;
+            font-family: 'Impact', sans-serif;
+        }
+        
+.hero-text {
+    width: 80vw; /* Контейнер на 80% ширины экрана */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-text h1,
+.hero-text p {
+    width: 100%;
+    white-space: nowrap; /* В одну строку */
+    overflow: visible; /* Не обрезать */
+    font-size: 10vw; /* Стартовый размер */
+}
+
+.hero-text h1 {
+    font-family: 'Impact', sans-serif;
+    font-size: clamp(1rem, 10vw, 6rem); /* Автоматическое сжатие */
+}
+
+.hero-text p {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(0.8rem, 6vw, 4rem);
+}
+        
+
+        .parallax-img {
+            position: absolute;
+            width: 15vw;
+            height: auto;
+            transition: transform 0.1s ease-out;
+            z-index: 100; /* Большие изображения должны быть сверху */
+            pointer-events: none;
+        }
+
+        /* Новые изображения для параллакса (мелкие) */
+        .parallax-img-small {
+            width: 10vw; /* Меньше по размеру */
+            z-index: -5; /* Эти изображения будут ниже, чем текст */
+        }
+
+        /* Новый фон для второго контейнера */
+        .container2 {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom, #fee6ed, #dbeafe); /* Градиент от розового до голубого */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Контейнер с результатами */
+        .result-container {
+            width: 40%; /* Ширина 50%, можно настроить */
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10%;
+            text-align: center;
+        }
+
+        /* Результаты - белые квадраты с круглыми краями */
+        .result {
+            background: white;
+            width: 250px;  /* Размер статистики */
+            height: 250px;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .result:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon {
+            font-size: 40px; /* Увеличиваем иконки */
+        }
+
+        .number {
+            font-size: 48px; /* Увеличиваем числа */
+            font-weight: bold;
+            color: #ff4081;
+            margin: 10px 0;
+        }
+
+        /* Мобильная версия */
+        @media (max-width: 768px) {
+            .result-container {
+                grid-template-columns: 1fr; /* В столбик на мобильных */
+            }
+
+            .result {
+                width: 90%; /* Делаем статистику шире на маленьких экранах */
+                height: auto;
+                margin-bottom: 20px;
+            }
+
+            .icon {
+                font-size: 36px;
+            }
+
+            .number {
+                font-size: 42px;
+            }
+        }
+    
+    </style>
+</head>
+<body>
+    <!-- Первый контейнер -->
+    <div class="section hero">
+        <div class="hero-text">
+            <h1>Как я помогла кафе продвинуть уникальный продукт</h1>
+            <p>Публикация привела к росту ссылочной массы и помогла бренду привлечь новых клиентов.</p>
+        </div>
+        
+        <!-- Добавляем 5 новых изображений с параллакс-эффектом -->
+        <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 10%; left: 10%;" data-speed="10">
+        <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 40%; left: 50%;" data-speed="8">
+        <img src="yogurt5.png" class="parallax-img parallax-img-small" style="top: 60%; left: 80%;" data-speed="6">
+        <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 80%; left: 40%;" data-speed="4">
+        <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 10%; left: 00%;" data-speed="2">
+        
+        <!-- Большие изображения для параллакса -->
+        <img src="yogurt1.png" class="parallax-img" style="top: 60%; left: 5%;" data-speed="15">
+        <img src="yogurt2.png" class="parallax-img" style="top: -10%; left: 50%;" data-speed="12">
+        <img src="yogurt1.png" class="parallax-img" style="top: 90%; left: 80%;" data-speed="10">
+    </div>
+    
+    <!-- Второй контейнер -->
+    <div class="container2">
+        <div class="result-container">
+            <div class="result">
+                <div class="icon">📈</div>
+                <div class="number">10%</div>
+                <p>Рост трафика извне</p>
+            </div>
+            <div class="result">
+                <div class="icon">🕒</div>
+                <div class="number">+35%</div>
+                <p>Увеличение времени на странице</p>
+            </div>
+            <div class="result">
+                <div class="icon">📝</div>
+                <div class="number">5+</div>
+                <p>Статей в топе</p>
+            </div>
+            <div class="result">
+                <div class="icon">💬</div>
+                <div class="number">X2</div>
+                <p>Рост комментариев</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
 document.addEventListener("DOMContentLoaded", () => {
     const parallaxImages = document.querySelectorAll(".parallax-img");
 
@@ -58,3 +274,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('resize', adjustTextSize);
     adjustTextSize(); // Вызов при загрузке
 });
+ </script>
+</body>
+</html>
