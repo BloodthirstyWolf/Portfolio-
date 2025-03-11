@@ -214,24 +214,47 @@
     </div>
 
     <script>
-        document.addEventListener("mousemove", (e) => {
-            document.querySelectorAll(".parallax-img").forEach(img => {
-                let speed = parseFloat(img.getAttribute("data-speed"));
-                let x = (window.innerWidth - e.pageX * speed) / 100;
-                let y = (window.innerHeight - e.pageY * speed) / 100;
-                img.style.transform = `translate(${x}px, ${y}px)`;
-            });
-        });
+        document.addEventListener("DOMContentLoaded", () => {
+    const parallaxImages = document.querySelectorAll(".parallax-img");
 
-        function fitTextToContainer(element) {
-        let parent = element.parentElement;
-        let fontSize = parseFloat(window.getComputedStyle(element).fontSize);
-        
-        while (element.scrollWidth > parent.clientWidth && fontSize > 10) {
-            fontSize -= 1;
-            element.style.fontSize = fontSize + "px";
-        }
+    function updateParallax(x, y) {
+        parallaxImages.forEach(img => {
+            let speed = parseFloat(img.getAttribute("data-speed"));
+            let xOffset = (window.innerWidth - x * speed) / 100;
+            let yOffset = (window.innerHeight - y * speed) / 100;
+            img.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+        });
     }
+
+    // Обработка движения мыши (десктоп)
+    document.addEventListener("mousemove", (e) => {
+        if (!window.isMobile) {
+            updateParallax(e.pageX, e.pageY);
+        }
+    });
+
+    // Проверка, является ли устройство мобильным
+    function isMobileDevice() {
+        return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    window.isMobile = isMobileDevice();
+
+    // Обработка движения телефона (мобильные устройства)
+    if (window.isMobile && window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", (event) => {
+            let x = event.gamma; // Наклон влево-вправо (-90 до 90)
+            let y = event.beta;  // Наклон вперед-назад (-180 до 180)
+
+            if (x !== null && y !== null) {
+                // Приводим значения к диапазону, удобному для параллакса
+                let mappedX = (x + 90) / 180 * window.innerWidth;
+                let mappedY = (y + 90) / 180 * window.innerHeight;
+                updateParallax(mappedX, mappedY);
+            }
+        });
+    }
+});
 
     function adjustTextSize() {
         document.querySelectorAll('.hero-text h1, .hero-text p').forEach(fitTextToContainer);
