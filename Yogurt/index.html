@@ -46,25 +46,34 @@
             z-index: 10;
         }
 
-.hero-text {
-    width: 80vw; /* Или 100vw, если нужно на всю ширину */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-        
+     
         .hero .hero-text {
             z-index: 0;
             font-family: 'Impact', sans-serif;
         }
 
-.hero h1, 
-.hero p {
-    display: block;
+.hero-text {
+    width: 80vw; /* Или 100vw, если нужно во всю ширину */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    width: 100%;
-    font-size: min(10vw, 10vh); /* Автоматически адаптируется по ширине экрана */
 }
+
+.hero h1 {
+    font-family: 'Impact', sans-serif;
+    font-size: 10vw; /* Автоматически масштабируется */
+    white-space: nowrap; /* Запрещает перенос строк */
+    width: fit-content;
+}
+
+.hero p {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5vw; /* Автоматический размер */
+    white-space: nowrap;
+    width: fit-content;
+}
+
         .parallax-img {
             position: absolute;
             width: 15vw;
