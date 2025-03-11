@@ -25,11 +25,13 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: Arial, sans-serif;
             background: white;
             overflow-x: hidden;
         }
+
         .section {
             width: 100vw;
             height: 100vh;
@@ -39,47 +41,54 @@
             position: relative;
             z-index: 5;
         }
+
         .hero {
             background: #fee6ed;
             flex-direction: column;
             text-align: center;
             position: relative;
             z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
         .hero-text {
             width: 80%;
             max-width: 1000px;
             text-align: center;
             position: relative;
-            margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        .hero-text h1, .hero-text p {
+
+        .hero-text h1,
+        .hero-text p {
             white-space: nowrap;
-            display: inline-block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            display: block;
+            text-align: center;
         }
+
         .hero-text h1 {
             font-family: 'Impact', sans-serif;
             color: white;
         }
+
         .hero-text p {
             font-family: 'Bebas Neue', sans-serif;
             color: white;
         }
 
-        .parallax-img {
-            position: absolute;
-            width: 15vw;
-            height: auto;
-            transition: transform 0.1s ease-out;
-            z-index: 100;
-            pointer-events: none;
-        }
-        .parallax-img-small {
-            width: 10vw;
-            z-index: -5;
+        .scalable-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-origin: top left;
+            width: fit-content;
         }
 
     </style>
@@ -87,36 +96,30 @@
 <body>
     <div class="section hero">
         <div class="hero-text">
-            <h1>Как я помогла кафе продвинуть уникальный продукт</h1>
-            <p>Публикация привела к росту ссылочной массы и помогла бренду привлечь новых клиентов.</p>
+            <div class="scalable-text">
+                <h1>Как я помогла кафе продвинуть уникальный продукт</h1>
+            </div>
+            <div class="scalable-text">
+                <p>Публикация привела к росту ссылочной массы и помогла бренду привлечь новых клиентов.</p>
+            </div>
         </div>
     </div>
 
     <script>
-        function adjustTextWidth() {
+        function fitTextToContainer() {
             let heroText = document.querySelector(".hero-text");
-            let h1 = document.querySelector(".hero-text h1");
-            let p = document.querySelector(".hero-text p");
+            let textBlocks = document.querySelectorAll(".scalable-text");
 
-            let containerWidth = heroText.clientWidth;
-
-            h1.style.transform = "scale(1)";
-            p.style.transform = "scale(1)";
-
-            let h1Width = h1.scrollWidth;
-            let pWidth = p.scrollWidth;
-
-            let h1Scale = containerWidth / h1Width;
-            let pScale = containerWidth / pWidth;
-
-            let scale = Math.min(h1Scale, pScale);
-
-            h1.style.transform = `scale(${scale})`;
-            p.style.transform = `scale(${scale})`;
+            textBlocks.forEach(block => {
+                let text = block.children[0];
+                text.style.fontSize = "100px"; // Ставим большой размер, чтобы уменьшить
+                let scaleFactor = heroText.clientWidth / text.clientWidth;
+                text.style.transform = `scale(${scaleFactor})`;
+            });
         }
 
-        document.addEventListener("DOMContentLoaded", adjustTextWidth);
-        window.addEventListener("resize", adjustTextWidth);
+        document.addEventListener("DOMContentLoaded", fitTextToContainer);
+        window.addEventListener("resize", fitTextToContainer);
     </script>
 </body>
 </html>
