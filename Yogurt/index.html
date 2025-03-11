@@ -62,17 +62,18 @@
 
 .hero h1 {
     font-family: 'Impact', sans-serif;
-    font-size: 10vw; /* Автоматически масштабируется */
-    white-space: nowrap; /* Запрещает перенос строк */
-    width: fit-content;
+    font-size: clamp(2rem, 8vw, 6rem); /* Автоадаптация */
+    width: 100%;
+    text-wrap: balance;
 }
 
 .hero p {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 5vw; /* Автоматический размер */
-    white-space: nowrap;
-    width: fit-content;
+    font-size: clamp(1.5rem, 5vw, 3.5rem);
+    width: 100%;
+    text-wrap: balance;
 }
+
 
         .parallax-img {
             position: absolute;
