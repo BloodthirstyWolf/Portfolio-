@@ -291,25 +291,20 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("deviceorientation", (event) => {
             event.preventDefault(); // Блокируем обновление страницы свайпом вниз
 
-            let x = event.gamma; // Наклон влево-вправо (-90 до 90)
+            let x = event.gamma; // Наклон влево-вправо (-180 до 180)
             let y = event.beta;  // Наклон вперед-назад (-180 до 180)
 
-            // Преобразуем значения углов в диапазон 0-360 для плавного эффекта
+            // Преобразуем значения углов в диапазон -180 до +180 для плавного эффекта
             if (x !== null && y !== null) {
-                // Для X и Y мы будем использовать диапазоны от -90 до 90 для X и от -180 до 180 для Y
-                let mappedX = x; // -90 до 90
-                let mappedY = y; // -180 до 180
-
-                // Ограничиваем значения для корректного отображения
-                mappedX = Math.min(Math.max(mappedX, -90), 90); // Ограничиваем по горизонтали
-                mappedY = Math.min(Math.max(mappedY, -90), 90); // Ограничиваем по вертикали
+                let mappedX = x; // От -180 до +180
+                let mappedY = y; // От -180 до +180
 
                 // Преобразуем угол в ширину/высоту экрана с учетом пропорций
-                mappedX = (mappedX * window.innerWidth) / 180;  // Увеличиваем диапазон для более плавного движения
-                mappedY = (mappedY * window.innerHeight) / 180; // Применяем такое же преобразование для Y
+                mappedX = (mappedX * window.innerWidth) / 360;  // Используем более широкий диапазон для X
+                mappedY = (mappedY * window.innerHeight) / 360; // Используем более широкий диапазон для Y
 
                 // Увеличиваем чувствительность, умножая на коэффициент
-                const sensitivity = 3; // Увеличьте этот коэффициент, чтобы повысить чувствительность
+                const sensitivity = 5; // Увеличьте этот коэффициент, чтобы повысить чувствительность
                 mappedX *= sensitivity;
                 mappedY *= sensitivity;
 
