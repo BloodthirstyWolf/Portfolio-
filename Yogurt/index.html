@@ -274,15 +274,18 @@ document.addEventListener("DOMContentLoaded", () => {
             // Чтобы продолжить движение за пределы 90 градусов, не сбрасывая координаты, нужно немного изменить логику
             if (x !== null && y !== null) {
                 // Преобразуем значения углов в диапазон 0-360 для плавного эффекта
-                let mappedX = ((x + 180) % 360) * (window.innerWidth / 360); // от -180 до 180
-                let mappedY = ((y + 180) % 360) * (window.innerHeight / 360); // от -180 до 180
+                let mappedX = ((x + 180) % 360); // Теперь угол будет в диапазоне от 0 до 360
+                let mappedY = ((y + 180) % 360); // Теперь угол будет в диапазоне от 0 до 360
+
+                // Мы делаем диапазон более плавным, например:
+                mappedX = (mappedX * window.innerWidth) / 360;
+                mappedY = (mappedY * window.innerHeight) / 360;
 
                 updateParallax(mappedX, mappedY);
             }
         }, { passive: false }); // Важно для preventDefault()
     }
 });
-
  </script>
 </body>
 </html>
