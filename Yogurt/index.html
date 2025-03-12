@@ -119,8 +119,11 @@
         }
 
         .icon {
-            font-size: 40px; /* Увеличиваем иконки */
-        }
+    font-size: 40px;
+    display: block; /* Чтобы эмодзи не были на одной линии с текстом */
+    margin-bottom: 10px; /* Отступ перед числом */
+}
+
 
         .number {
             font-size: 48px; /* Увеличиваем числа */
@@ -186,14 +189,31 @@
         <img src="yogurt1.png" class="parallax-img" style="top: 90%; left: 80%;" data-speed="10">
     </div>
 
-    <div class="container2">
-        <div class="result-container">
-            <div class="result">📈<div class="number">10%</div><p>Рост трафика</p></div>
-            <div class="result">🕒<div class="number">+35%</div><p>Время на странице</p></div>
-            <div class="result">📝<div class="number">5+</div><p>Статей в топе</p></div>
-            <div class="result">💬<div class="number">X2</div><p>Рост комментариев</p></div>
+   <div class="container2">
+    <div class="result-container">
+        <div class="result">
+            <span class="icon">📈</span>
+            <div class="number">10%</div>
+            <p>Рост трафика</p>
+        </div>
+        <div class="result">
+            <span class="icon">🕒</span>
+            <div class="number">+35%</div>
+            <p>Время на странице</p>
+        </div>
+        <div class="result">
+            <span class="icon">📝</span>
+            <div class="number">5+</div>
+            <p>Статей в топе</p>
+        </div>
+        <div class="result">
+            <span class="icon">💬</span>
+            <div class="number">X2</div>
+            <p>Рост комментариев</p>
         </div>
     </div>
+</div>
+
 
     <script>
 document.addEventListener("DOMContentLoaded", () => {
