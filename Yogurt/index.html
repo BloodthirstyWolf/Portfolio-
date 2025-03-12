@@ -223,29 +223,8 @@
 
     <script>
 document.addEventListener("DOMContentLoaded", () => {
-    /** === АВТОМАСШТАБ ТЕКСТА В HERO === **/
-    function fitTextToContainer(element) {
-        let parent = element.parentElement;
-        let fontSize = 100;
-        element.style.fontSize = fontSize + "px";
-
-        while (element.scrollWidth > parent.clientWidth || element.scrollHeight > parent.clientHeight) {
-            fontSize -= 1;
-            element.style.fontSize = fontSize + "px";
-            if (fontSize < 10) break;
-        }
-    }
-
-    function adjustTextSize() {
-        document.querySelectorAll('.hero-text h1, .hero-text p').forEach(fitTextToContainer);
-    }
-
-    window.addEventListener('resize', adjustTextSize);
-    adjustTextSize();
-
     /** === ПАРАЛЛАКС === **/
     const parallaxImages = document.querySelectorAll(".parallax-img");
-    let lastX = 0, lastY = 0; // Запоминаем последние значения
 
     function updateParallax(x, y) {
         parallaxImages.forEach(img => {
@@ -256,46 +235,56 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Десктоп: движение мыши
     document.addEventListener("mousemove", (e) => {
         if (!window.isMobile) {
             updateParallax(e.pageX, e.pageY);
         }
     });
 
+    // Проверка на мобильное устройство
     function isMobileDevice() {
         return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     }
 
     window.isMobile = isMobileDevice();
 
+    // Сглаживание значений (фильтр резких скачков)
+    let lastX = null, lastY = null;
+    const smoothingFactor = 0.15; // Чем ниже, тем более плавно
+
+    // Мобильные устройства: движение от наклона
     if (window.isMobile && window.DeviceOrientationEvent) {
         window.addEventListener("deviceorientation", (event) => {
-            event.preventDefault();
+            event.preventDefault(); // Блокируем обновление страницы свайпом вниз
 
-            let x = event.gamma;
-            let y = event.beta;
+            let x = event.gamma; // Наклон влево-вправо (-90 до 90)
+            let y = event.beta;  // Наклон вперед-назад (-180 до 180)
 
-            if (x === null || y === null) return; // Пропускаем, если данные недоступны
+            if (x !== null && y !== null && !isNaN(x) && !isNaN(y)) {
+                // Ограничиваем диапазон значений (-180 до 180) без обнуления
+                x = Math.max(-180, Math.min(180, x));
+                y = Math.max(-180, Math.min(180, y));
 
-            let mappedX = x;
-            let mappedY = y;
+                // Преобразуем углы в ширину/высоту экрана
+                let mappedX = (x * window.innerWidth) / 180;
+                let mappedY = (y * window.innerHeight) / 180;
 
-            mappedX = (mappedX * window.innerWidth) / 180;
-            mappedY = (mappedY * window.innerHeight) / 180;
+                // Увеличиваем чувствительность
+                const sensitivity = 3;
+                mappedX *= sensitivity;
+                mappedY *= sensitivity;
 
-            const sensitivity = 3;
-            mappedX *= sensitivity;
-            mappedY *= sensitivity;
+                // Сглаживаем движения (интерполяция)
+                if (lastX === null) lastX = mappedX;
+                if (lastY === null) lastY = mappedY;
 
-            if (Math.abs(mappedX - lastX) > 100 || Math.abs(mappedY - lastY) > 100) {
-                return; // Игнорируем резкие скачки
+                lastX = lastX + (mappedX - lastX) * smoothingFactor;
+                lastY = lastY + (mappedY - lastY) * smoothingFactor;
+
+                updateParallax(lastX, lastY);
             }
-
-            lastX = mappedX;
-            lastY = mappedY;
-
-            updateParallax(mappedX, mappedY);
-        }, { passive: false });
+        }, { passive: false }); // Важно для preventDefault()
     }
 });
  </script>
