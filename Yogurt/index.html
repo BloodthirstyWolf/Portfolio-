@@ -215,78 +215,69 @@
 
     <script>
 document.addEventListener("DOMContentLoaded", () => {
+    /** === АВТОМАСШТАБ ТЕКСТА В HERO === **/
+    function fitTextToContainer(element) {
+        let parent = element.parentElement;
+        let fontSize = 100; // Начальный размер шрифта
+        element.style.fontSize = fontSize + "px";
+
+        // Уменьшаем, пока текст не поместится
+        while (element.scrollWidth > parent.clientWidth || element.scrollHeight > parent.clientHeight) {
+            fontSize -= 1;
+            element.style.fontSize = fontSize + "px";
+            if (fontSize < 10) break; // Защита от зацикливания
+        }
+    }
+
+    function adjustTextSize() {
+        document.querySelectorAll('.hero-text h1, .hero-text p').forEach(fitTextToContainer);
+    }
+
+    window.addEventListener('resize', adjustTextSize);
+    adjustTextSize(); // Вызываем при загрузке
+
+
+    /** === ПАРАЛЛАКС === **/
     const parallaxImages = document.querySelectorAll(".parallax-img");
 
     function updateParallax(x, y) {
         parallaxImages.forEach(img => {
             let speed = parseFloat(img.getAttribute("data-speed"));
-            let xOffset = ((window.innerWidth - x * speed) / 50); // Увеличена чувствительность
-            let yOffset = ((window.innerHeight - y * speed) / 50); 
-
+            let xOffset = (window.innerWidth - x * speed) / 100;
+            let yOffset = (window.innerHeight - y * speed) / 100;
             img.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
         });
     }
 
-    function lerp(start, end, factor) {
-        return start + (end - start) * factor;
-    }
-
-    let targetX = 0, targetY = 0;
-    let currentX = 0, currentY = 0;
-
-    function smoothParallax() {
-        currentX = lerp(currentX, targetX, 0.2); // Быстрее реагирует
-        currentY = lerp(currentY, targetY, 0.2);
-        updateParallax(currentX, currentY);
-        requestAnimationFrame(smoothParallax);
-    }
-    smoothParallax();
-
+    // Десктоп: движение мыши
     document.addEventListener("mousemove", (e) => {
         if (!window.isMobile) {
-            targetX = e.pageX;
-            targetY = e.pageY;
+            updateParallax(e.pageX, e.pageY);
         }
     });
 
+    // Проверка на мобильное устройство
     function isMobileDevice() {
         return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     }
 
     window.isMobile = isMobileDevice();
 
+    // Мобильные устройства: движение от наклона
     if (window.isMobile && window.DeviceOrientationEvent) {
         window.addEventListener("deviceorientation", (event) => {
+            event.preventDefault(); // Блокируем обновление страницы свайпом вниз
+
             let x = event.gamma; // Наклон влево-вправо (-90 до 90)
             let y = event.beta;  // Наклон вперед-назад (-180 до 180)
 
             if (x !== null && y !== null) {
-                targetX = (x + 90) / 90 * window.innerWidth; // Увеличена реакция
-                targetY = (y + 90) / 90 * window.innerHeight;
+                let mappedX = ((x + 90) / 180) * window.innerWidth * 1.5; // Усиливаем эффект
+                let mappedY = ((y + 90) / 180) * window.innerHeight * 1.5;
+                updateParallax(mappedX, mappedY);
             }
-        });
+        }, { passive: false }); // Важно для preventDefault()
     }
-});
-
-    // Функция для подгонки текста под контейнер
-    function fitTextToContainer(element) {
-        let containerWidth = element.parentElement.clientWidth;
-        let fontSize = 100; // Стартовый размер шрифта (px)
-        element.style.fontSize = `${fontSize}px`;
-
-        while (element.scrollWidth > containerWidth && fontSize > 10) {
-            fontSize -= 1;
-            element.style.fontSize = `${fontSize}px`;
-        }
-    }
-
-    // Адаптация заголовка и подзаголовка
-    function adjustTextSize() {
-        document.querySelectorAll('.hero-text h1, .hero-text p').forEach(fitTextToContainer);
-    }
-
-    window.addEventListener('resize', adjustTextSize);
-    adjustTextSize(); // Вызов при загрузке
 });
  </script>
 </body>
