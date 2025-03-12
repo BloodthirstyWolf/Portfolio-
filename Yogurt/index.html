@@ -271,14 +271,18 @@ document.addEventListener("DOMContentLoaded", () => {
             let x = event.gamma; // Наклон влево-вправо (-90 до 90)
             let y = event.beta;  // Наклон вперед-назад (-180 до 180)
 
+            // Чтобы продолжить движение за пределы 90 градусов, не сбрасывая координаты, нужно немного изменить логику
             if (x !== null && y !== null) {
-                let mappedX = ((x + 90) / 180) * window.innerWidth * 1.5; // Усиливаем эффект
-                let mappedY = ((y + 90) / 180) * window.innerHeight * 1.5;
+                // Преобразуем значения углов в диапазон 0-360 для плавного эффекта
+                let mappedX = ((x + 180) % 360) * (window.innerWidth / 360); // от -180 до 180
+                let mappedY = ((y + 180) % 360) * (window.innerHeight / 360); // от -180 до 180
+
                 updateParallax(mappedX, mappedY);
             }
         }, { passive: false }); // Важно для preventDefault()
     }
 });
+
  </script>
 </body>
 </html>
