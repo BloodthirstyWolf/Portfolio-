@@ -281,9 +281,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Преобразуем значения углов в диапазон 0-360 для плавного эффекта
             if (x !== null && y !== null) {
-                // Для X и Y мы будем использовать диапазоны от -180 до 180 для каждой оси
-                let mappedX = x; // -180 до 180
-                let mappedY = y; // -180 до 180
+                // Расширяем диапазоны X и Y за пределы 90
+                let mappedX = x + 180; // Получаем диапазон от -180 до 180
+                let mappedY = y + 180; // Получаем диапазон от -180 до 180
 
                 // Преобразуем угол в ширину/высоту экрана с учетом пропорций
                 mappedX = (mappedX * window.innerWidth) / 360;  // Увеличиваем диапазон для более плавного движения
@@ -294,9 +294,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 mappedX *= sensitivity;
                 mappedY *= sensitivity;
 
-                // Для смещения, чтобы не было скачков, корректируем значения
-                if (mappedX > window.innerWidth) mappedX = window.innerWidth;
-                if (mappedY > window.innerHeight) mappedY = window.innerHeight;
+                // Корректируем значения, чтобы они не выходили за пределы экрана
+                mappedX = Math.min(Math.max(mappedX, 0), window.innerWidth);
+                mappedY = Math.min(Math.max(mappedY, 0), window.innerHeight);
 
                 // Обновляем параллакс с новой чувствительностью
                 updateParallax(mappedX, mappedY);
