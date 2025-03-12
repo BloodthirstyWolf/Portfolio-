@@ -244,6 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('resize', adjustTextSize);
     adjustTextSize(); // Вызываем при загрузке
 
+
     /** === ПАРАЛЛАКС === **/
     const parallaxImages = document.querySelectorAll(".parallax-img");
 
@@ -304,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 mappedY = (mappedY * window.innerHeight) / 360; // Используем более широкий диапазон для Y
 
                 // Увеличиваем чувствительность, умножая на коэффициент
-                const sensitivity = 5; // Увеличьте этот коэффициент, чтобы повысить чувствительность
+                const sensitivity = 6; // Увеличьте этот коэффициент, чтобы повысить чувствительность
                 mappedX *= sensitivity;
                 mappedY *= sensitivity;
 
