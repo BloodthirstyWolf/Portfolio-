@@ -245,6 +245,29 @@ document.addEventListener("DOMContentLoaded", () => {
     adjustTextSize(); // Вызываем при загрузке
 
 
+  
+    /** === АВТОМАСШТАБ ТЕКСТА В HERO === **/
+    function fitTextToContainer(element) {
+        let parent = element.parentElement;
+        let fontSize = 100; // Начальный размер шрифта
+        element.style.fontSize = fontSize + "px";
+
+        // Уменьшаем, пока текст не поместится
+        while (element.scrollWidth > parent.clientWidth || element.scrollHeight > parent.clientHeight) {
+            fontSize -= 1;
+            element.style.fontSize = fontSize + "px";
+            if (fontSize < 10) break; // Защита от зацикливания
+        }
+    }
+
+    function adjustTextSize() {
+        document.querySelectorAll('.hero-text h1, .hero-text p').forEach(fitTextToContainer);
+    }
+
+    window.addEventListener('resize', adjustTextSize);
+    adjustTextSize(); // Вызываем при загрузке
+
+       document.addEventListener("DOMContentLoaded", () => {
     /** === ПАРАЛЛАКС === **/
     const parallaxImages = document.querySelectorAll(".parallax-img");
 
@@ -252,9 +275,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let animationFrameId;
 
     function updateParallax(x, y) {
-        // Плавное обновление с помощью requestAnimationFrame
         if (animationFrameId) cancelAnimationFrame(animationFrameId);
-
         animationFrameId = requestAnimationFrame(() => {
             parallaxImages.forEach(img => {
                 let speed = parseFloat(img.getAttribute("data-speed"));
@@ -270,8 +291,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!window.isMobile) {
             const x = e.pageX;
             const y = e.pageY;
-
-            // Обновляем только если значения изменились существенно
             if (Math.abs(lastX - x) > 1 || Math.abs(lastY - y) > 1) {
                 lastX = x;
                 lastY = y;
@@ -287,38 +306,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.isMobile = isMobileDevice();
 
-    // Мобильные устройства: движение от наклона
-    if (window.isMobile && window.DeviceOrientationEvent) {
-        window.addEventListener("deviceorientation", (event) => {
-            event.preventDefault(); // Блокируем обновление страницы свайпом вниз
+    // Фильтрация резких скачков
+    function smoothValue(current, target, speed = 0.1) {
+        return current + (target - current) * speed;
+    }
 
-            let x = event.gamma; // Наклон влево-вправо (-180 до 180)
+    if (window.isMobile && window.DeviceOrientationEvent) {
+        let smoothedX = 0, smoothedY = 0; // Для плавности
+        window.addEventListener("deviceorientation", (event) => {
+            event.preventDefault();
+
+            let x = event.gamma; // Наклон влево-вправо (-90 до 90)
             let y = event.beta;  // Наклон вперед-назад (-180 до 180)
 
-            // Преобразуем значения углов в диапазон -180 до +180 для плавного эффекта
-            if (x !== null && y !== null) {
-                let mappedX = x; // От -180 до +180
-                let mappedY = y; // От -180 до +180
+            // Ограничиваем углы, чтобы избежать переходов в ненормальные диапазоны
+            x = Math.max(-90, Math.min(90, x)); 
+            y = Math.max(-90, Math.min(90, y)); 
 
-                // Преобразуем угол в ширину/высоту экрана с учетом пропорций
-                mappedX = (mappedX * window.innerWidth) / 360;  // Используем более широкий диапазон для X
-                mappedY = (mappedY * window.innerHeight) / 360; // Используем более широкий диапазон для Y
+            // Преобразуем диапазон -90...90 в пропорции экрана
+            let mappedX = (x + 90) / 180 * window.innerWidth;  
+            let mappedY = (y + 90) / 180 * window.innerHeight;  
 
-                // Увеличиваем чувствительность, умножая на коэффициент
-                const sensitivity = 6; // Увеличьте этот коэффициент, чтобы повысить чувствительность
-                mappedX *= sensitivity;
-                mappedY *= sensitivity;
+            // Увеличиваем чувствительность
+            const sensitivity = 2.5;
+            mappedX *= sensitivity;
+            mappedY *= sensitivity;
 
-                // Для смещения, чтобы не было скачков, корректируем значения
-                if (mappedX > window.innerWidth) mappedX = window.innerWidth;
-                if (mappedY > window.innerHeight) mappedY = window.innerHeight;
+            // Фильтруем скачки
+            smoothedX = smoothValue(smoothedX, mappedX);
+            smoothedY = smoothValue(smoothedY, mappedY);
 
-                // Обновляем параллакс с новой чувствительностью
-                updateParallax(mappedX, mappedY);
-            }
-        }, { passive: false }); // Важно для preventDefault()
+            updateParallax(smoothedX, smoothedY);
+        }, { passive: false });
     }
 });
+
  </script>
 </body>
 </html>
