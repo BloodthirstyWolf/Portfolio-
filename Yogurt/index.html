@@ -223,70 +223,75 @@
 
     <script>
 document.addEventListener("DOMContentLoaded", () => {
-    /** === ПАРАЛЛАКС === **/
     const parallaxImages = document.querySelectorAll(".parallax-img");
 
     function updateParallax(x, y) {
         parallaxImages.forEach(img => {
             let speed = parseFloat(img.getAttribute("data-speed"));
-            let xOffset = (window.innerWidth - x * speed) / 100;
-            let yOffset = (window.innerHeight - y * speed) / 100;
+            let xOffset = ((window.innerWidth / 2 - x) * speed) / 50; 
+            let yOffset = ((window.innerHeight / 2 - y) * speed) / 50; 
             img.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
         });
     }
 
-    // Десктоп: движение мыши
+    // Обработка движения мыши (десктоп)
     document.addEventListener("mousemove", (e) => {
         if (!window.isMobile) {
-            updateParallax(e.pageX, e.pageY);
+            updateParallax(e.clientX, e.clientY);
         }
     });
 
-    // Проверка на мобильное устройство
+    // Проверка мобильного устройства
     function isMobileDevice() {
         return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     }
 
     window.isMobile = isMobileDevice();
 
-    // Сглаживание значений (фильтр резких скачков)
-    let lastX = null, lastY = null;
-    const smoothingFactor = 0.15; // Чем ниже, тем более плавно
-
-    // Мобильные устройства: движение от наклона
+    // Гироскопный параллакс (мобильные устройства)
     if (window.isMobile && window.DeviceOrientationEvent) {
         window.addEventListener("deviceorientation", (event) => {
-            event.preventDefault(); // Блокируем обновление страницы свайпом вниз
+            let x = event.gamma;  // Влево-вправо (-90 до 90)
+            let y = event.beta;   // Вперёд-назад (-180 до 180)
 
-            let x = event.gamma; // Наклон влево-вправо (-90 до 90)
-            let y = event.beta;  // Наклон вперед-назад (-180 до 180)
-
-            if (x !== null && y !== null && !isNaN(x) && !isNaN(y)) {
-                // Ограничиваем диапазон значений (-180 до 180) без обнуления
-                x = Math.max(-180, Math.min(180, x));
-                y = Math.max(-180, Math.min(180, y));
-
-                // Преобразуем углы в ширину/высоту экрана
-                let mappedX = (x * window.innerWidth) / 180;
-                let mappedY = (y * window.innerHeight) / 180;
-
-                // Увеличиваем чувствительность
-                const sensitivity = 3;
-                mappedX *= sensitivity;
-                mappedY *= sensitivity;
-
-                // Сглаживаем движения (интерполяция)
-                if (lastX === null) lastX = mappedX;
-                if (lastY === null) lastY = mappedY;
-
-                lastX = lastX + (mappedX - lastX) * smoothingFactor;
-                lastY = lastY + (mappedY - lastY) * smoothingFactor;
-
-                updateParallax(lastX, lastY);
+            if (x !== null && y !== null) {
+                // Увеличенный диапазон для плавности
+                let mappedX = (x + 90) * (window.innerWidth / 180);
+                let mappedY = (y + 90) * (window.innerHeight / 180);
+                updateParallax(mappedX, mappedY);
             }
-        }, { passive: false }); // Важно для preventDefault()
+        });
     }
 });
+
+// ---------------- АДАПТИВНЫЙ ЗАГОЛОВОК ----------------
+function adjustTextSize() {
+    document.querySelectorAll('.hero-text h1, .hero-text p').forEach(fitTextToContainer);
+}
+
+function fitTextToContainer(element) {
+    let container = element.parentElement;
+    let maxWidth = container.clientWidth;
+    let maxHeight = container.clientHeight;
+    let fontSize = 100; // Начальный размер шрифта
+    element.style.fontSize = fontSize + "px";
+
+    // Уменьшение, пока текст не влезет
+    while (
+        (element.scrollWidth > maxWidth || element.scrollHeight > maxHeight) &&
+        fontSize > 10
+    ) {
+        fontSize -= 1;
+        element.style.fontSize = fontSize + "px";
+    }
+}
+
+// Наблюдатель за изменением размеров
+const resizeObserver = new ResizeObserver(adjustTextSize);
+resizeObserver.observe(document.querySelector(".hero-text"));
+
+window.addEventListener('resize', adjustTextSize);
+window.addEventListener('load', adjustTextSize);
  </script>
 </body>
 </html>
