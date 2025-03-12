@@ -226,14 +226,13 @@ document.addEventListener("DOMContentLoaded", () => {
     /** === АВТОМАСШТАБ ТЕКСТА В HERO === **/
     function fitTextToContainer(element) {
         let parent = element.parentElement;
-        let fontSize = 100; // Начальный размер шрифта
+        let fontSize = 100;
         element.style.fontSize = fontSize + "px";
 
-        // Уменьшаем, пока текст не поместится
         while (element.scrollWidth > parent.clientWidth || element.scrollHeight > parent.clientHeight) {
             fontSize -= 1;
             element.style.fontSize = fontSize + "px";
-            if (fontSize < 10) break; // Защита от зацикливания
+            if (fontSize < 10) break;
         }
     }
 
@@ -242,105 +241,63 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     window.addEventListener('resize', adjustTextSize);
-    adjustTextSize(); // Вызываем при загрузке
+    adjustTextSize();
 
-
-  
-    /** === АВТОМАСШТАБ ТЕКСТА В HERO === **/
-    function fitTextToContainer(element) {
-        let parent = element.parentElement;
-        let fontSize = 100; // Начальный размер шрифта
-        element.style.fontSize = fontSize + "px";
-
-        // Уменьшаем, пока текст не поместится
-        while (element.scrollWidth > parent.clientWidth || element.scrollHeight > parent.clientHeight) {
-            fontSize -= 1;
-            element.style.fontSize = fontSize + "px";
-            if (fontSize < 10) break; // Защита от зацикливания
-        }
-    }
-
-    function adjustTextSize() {
-        document.querySelectorAll('.hero-text h1, .hero-text p').forEach(fitTextToContainer);
-    }
-
-    window.addEventListener('resize', adjustTextSize);
-    adjustTextSize(); // Вызываем при загрузке
-
-       document.addEventListener("DOMContentLoaded", () => {
     /** === ПАРАЛЛАКС === **/
     const parallaxImages = document.querySelectorAll(".parallax-img");
-
-    let lastX = 0, lastY = 0;
-    let animationFrameId;
+    let lastX = 0, lastY = 0; // Запоминаем последние значения
 
     function updateParallax(x, y) {
-        if (animationFrameId) cancelAnimationFrame(animationFrameId);
-        animationFrameId = requestAnimationFrame(() => {
-            parallaxImages.forEach(img => {
-                let speed = parseFloat(img.getAttribute("data-speed"));
-                let xOffset = (window.innerWidth - x * speed) / 100;
-                let yOffset = (window.innerHeight - y * speed) / 100;
-                img.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
-            });
+        parallaxImages.forEach(img => {
+            let speed = parseFloat(img.getAttribute("data-speed"));
+            let xOffset = (window.innerWidth - x * speed) / 100;
+            let yOffset = (window.innerHeight - y * speed) / 100;
+            img.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
         });
     }
 
-    // Десктоп: движение мыши
     document.addEventListener("mousemove", (e) => {
         if (!window.isMobile) {
-            const x = e.pageX;
-            const y = e.pageY;
-            if (Math.abs(lastX - x) > 1 || Math.abs(lastY - y) > 1) {
-                lastX = x;
-                lastY = y;
-                updateParallax(x, y);
-            }
+            updateParallax(e.pageX, e.pageY);
         }
     });
 
-    // Проверка на мобильное устройство
     function isMobileDevice() {
         return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     }
 
     window.isMobile = isMobileDevice();
 
-    // Фильтрация резких скачков
-    function smoothValue(current, target, speed = 0.1) {
-        return current + (target - current) * speed;
-    }
-
     if (window.isMobile && window.DeviceOrientationEvent) {
-        let smoothedX = 0, smoothedY = 0; // Для плавности
         window.addEventListener("deviceorientation", (event) => {
             event.preventDefault();
 
-            let x = event.gamma; // Наклон влево-вправо (-90 до 90)
-            let y = event.beta;  // Наклон вперед-назад (-180 до 180)
+            let x = event.gamma;
+            let y = event.beta;
 
-            // Ограничиваем углы, чтобы избежать переходов в ненормальные диапазоны
-            x = Math.max(-90, Math.min(90, x)); 
-            y = Math.max(-90, Math.min(90, y)); 
+            if (x === null || y === null) return; // Пропускаем, если данные недоступны
 
-            // Преобразуем диапазон -90...90 в пропорции экрана
-            let mappedX = (x + 90) / 180 * window.innerWidth;  
-            let mappedY = (y + 90) / 180 * window.innerHeight;  
+            let mappedX = x;
+            let mappedY = y;
 
-            // Увеличиваем чувствительность
-            const sensitivity = 2.5;
+            mappedX = (mappedX * window.innerWidth) / 180;
+            mappedY = (mappedY * window.innerHeight) / 180;
+
+            const sensitivity = 3;
             mappedX *= sensitivity;
             mappedY *= sensitivity;
 
-            // Фильтруем скачки
-            smoothedX = smoothValue(smoothedX, mappedX);
-            smoothedY = smoothValue(smoothedY, mappedY);
+            if (Math.abs(mappedX - lastX) > 100 || Math.abs(mappedY - lastY) > 100) {
+                return; // Игнорируем резкие скачки
+            }
 
-            updateParallax(smoothedX, smoothedY);
+            lastX = mappedX;
+            lastY = mappedY;
+
+            updateParallax(mappedX, mappedY);
         }, { passive: false });
     }
 });
-
  </script>
 </body>
 </html>
