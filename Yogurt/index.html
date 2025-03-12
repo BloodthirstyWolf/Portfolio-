@@ -80,26 +80,29 @@
             z-index: -5;
         }
 
+        /* Новый фон для второго контейнера */
         .container2 {
             width: 100vw;
             height: 100vh;
-            background: linear-gradient(to bottom, #fee6ed, #dbeafe);
+            background: linear-gradient(to bottom, #fee6ed, #dbeafe); /* Градиент от розового до голубого */
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
+        /* Контейнер с результатами */
         .result-container {
-            width: 40%;
+            width: 40%; /* Ширина 50%, можно настроить */
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10%;
             text-align: center;
         }
 
+        /* Результаты - белые квадраты с круглыми краями */
         .result {
             background: white;
-            width: 250px;
+            width: 250px;  /* Размер статистики */
             height: 250px;
             border-radius: 16px;
             padding: 30px;
@@ -113,6 +116,17 @@
 
         .result:hover {
             transform: translateY(-5px);
+        }
+
+        .icon {
+            font-size: 40px; /* Увеличиваем иконки */
+        }
+
+        .number {
+            font-size: 48px; /* Увеличиваем числа */
+            font-weight: bold;
+            color: #ff4081;
+            margin: 10px 0;
         }
 
         @media (max-width: 768px) {
