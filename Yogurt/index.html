@@ -40,27 +40,19 @@
             position: relative;
             z-index: 10;
         }
-       .hero-text {
-    max-width: 80vw; /* Чтобы текст не расползался */
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.hero-text h1 {
-    font-family: 'Impact', sans-serif;
-    font-size: clamp(2rem, 8vw, 6rem); /* Автоматическое уменьшение */
-    word-wrap: break-word;
-    white-space: normal;
-    max-width: 100%;
-}
-
-.hero-text p {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(1rem, 5vw, 3rem);
-    max-width: 90%;
-}
+        .hero .hero-text {
+            z-index: 0;
+            font-family: 'Impact', sans-serif;
+            width: 80vw;
+        }
+        
+        .hero-text h1,
+        .hero-text p {
+            width: 100%;
+            white-space: nowrap;
+            overflow: visible;
+            font-size: 10vw;
+        }
 
         .hero-text h1 {
             font-family: 'Impact', sans-serif;
