@@ -376,39 +376,7 @@
     </div>
 
     <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const parallaxImages = document.querySelectorAll(".parallax-img");
 
-    function updateParallax(x, y) {
-        parallaxImages.forEach(img => {
-            let speed = parseFloat(img.getAttribute("data-speed"));
-            let xOffset = ((window.innerWidth / 2 - x) * speed) / 30;  
-            let yOffset = ((window.innerHeight / 2 - y) * speed) / 30;  
-            img.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
-        });
-    }
-
-    document.addEventListener("mousemove", (e) => {
-        if (!window.isMobile) updateParallax(e.clientX, e.clientY);
-    });
-
-    function isMobileDevice() {
-        return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    }
-    window.isMobile = isMobileDevice();
-
-    if (window.isMobile && window.DeviceOrientationEvent) {
-        window.addEventListener("deviceorientation", (event) => {
-            let x = event.gamma;
-            let y = event.beta;
-            if (x !== null && y !== null) {
-                let mappedX = (x + 180) * (window.innerWidth / 360); 
-                let mappedY = (y + 180) * (window.innerHeight / 360);
-                updateParallax(mappedX, mappedY);
-            }
-        });
-    }
-});
     </script>
 </body>
 </html>
