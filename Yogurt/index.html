@@ -289,6 +289,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 mappedX = (mappedX * window.innerWidth) / 360;
                 mappedY = (mappedY * window.innerHeight) / 360;
 
+                // Увеличиваем чувствительность, умножая на коэффициент
+                const sensitivity = 2; // Увеличьте этот коэффициент, чтобы повысить чувствительность
+                mappedX *= sensitivity;
+                mappedY *= sensitivity;
+
                 updateParallax(mappedX, mappedY);
             }
         }, { passive: false }); // Важно для preventDefault()
