@@ -125,12 +125,29 @@
                 margin-bottom: 20px;
             }
 
-            .hero-text h1,
+            .hero-text {
+    width: 90vw; /* Контейнер чуть шире, чтобы текст вписался */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: hidden; /* Без обрезаний */
+}
+
+.hero-text h1,
 .hero-text p {
-    max-width: 100%;  /* Чтобы вообще не вылезал */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; /* Если вдруг что-то не влезет, будет троеточие */
+    width: 100%;
+    white-space: normal; /* Позволяем перенос строк */
+    word-wrap: break-word; /* Разрешаем перенос по словам */
+    font-size: 10vw; /* Авторазмер */
+}
+
+.hero-text h1 {
+    font-size: clamp(1rem, 8vw, 6rem); /* Больше контроля */
+}
+
+.hero-text p {
+    font-size: clamp(0.8rem, 5vw, 3rem);
 }
         }
     </style>
