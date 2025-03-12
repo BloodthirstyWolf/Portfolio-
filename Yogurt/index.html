@@ -281,20 +281,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Преобразуем значения углов в диапазон 0-360 для плавного эффекта
             if (x !== null && y !== null) {
-                // Для X и Y мы будем использовать диапазоны от -90 до 90 для каждой оси
-                let mappedX = x; // -90 до 90
+                // Преобразуем угол в ширину/высоту экрана с учетом пропорций
+                let mappedX = x; // -90 до 90 (по умолчанию)
                 let mappedY = y; // -180 до 180
 
-                // Преобразуем угол в ширину/высоту экрана с учетом пропорций
-                mappedX = (mappedX * window.innerWidth) / 180;
-                mappedY = (mappedY * window.innerHeight) / 180;
+                // Преобразуем диапазоны на экране в 0 - 360 (по осям X и Y)
+                mappedX = (mappedX + 180) * window.innerWidth / 360;
+                mappedY = (mappedY + 180) * window.innerHeight / 360;
 
                 // Увеличиваем чувствительность, умножая на коэффициент
                 const sensitivity = 2; // Увеличьте этот коэффициент, чтобы повысить чувствительность
                 mappedX *= sensitivity;
                 mappedY *= sensitivity;
 
-                // Для смещения, чтобы не было скачков, корректируем значения
+                // Оставляем изображение в пределах экрана
                 if (mappedX > window.innerWidth) mappedX = window.innerWidth;
                 if (mappedY > window.innerHeight) mappedY = window.innerHeight;
 
