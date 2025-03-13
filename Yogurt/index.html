@@ -189,7 +189,36 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    // === ЛОГИКА АДАПТИВНОГО ЗАГОЛОВКА ===
+    function adjustTextSize() {
+        document.querySelectorAll('.hero-text h1, .hero-text p').forEach(fitTextToContainer);
+    }
+
+    function fitTextToContainer(element) {
+        let container = element.parentElement;
+        let maxWidth = container.clientWidth;
+        let fontSize = 100;
+        
+        element.style.width = "auto";
+        element.style.whiteSpace = "normal";  
+        element.style.fontSize = fontSize + "px";
+
+        while (element.offsetWidth > maxWidth && fontSize > 10) {
+            fontSize -= 1;
+            element.style.fontSize = fontSize + "px";
+        }
+    }
+
+    const resizeObserver = new ResizeObserver(adjustTextSize);
+    resizeObserver.observe(document.querySelector(".hero-text"));
+
+    window.addEventListener('resize', adjustTextSize);
+    window.addEventListener('load', () => {
+        setTimeout(adjustTextSize, 100); // Даём браузеру дорисовать страницу
+    });
 });
+
     </script>
 </body>
 </html>
