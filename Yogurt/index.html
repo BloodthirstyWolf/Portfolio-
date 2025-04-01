@@ -122,17 +122,45 @@
 
 
         @media (max-width: 768px) {
-            .result-container {
-                grid-template-columns: 1fr;
-            }
-            .result {
-                width: 90%;
-                height: auto;
-                margin-bottom: 20px;
-            }
-           
+            .container2 {
+    width: 100vw;
+    height: auto; /* В мобильной версии высота будет автоматически рассчитываться */
+    min-height: 100vh; /* Гарантирует, что секция будет занимать хотя бы всю высоту экрана */
+    background: linear-gradient(to bottom, #fee6ed, #dbeafe);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        }
+.result-container {
+    width: 40%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10%;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .container2 {
+        height: auto;
+        min-height: 100vh; /* Гарантируем, что в мобильной версии контейнер всё равно растягивается на весь экран */
+    }
+
+    .result-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Равномерно распределим элементы по вертикали */
+        align-items: center; /* Центрируем по горизонтали */
+        width: 100%; /* Растягиваем контейнер по ширине */
+    }
+
+    .result {
+        width: 90%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+}
+
     </style>
 </head>
 <body>
