@@ -341,18 +341,15 @@ footer {
         <button type="submit">Отправить</button>
     </form>
 </div>
-
-    
-        
-    <script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
     const parallaxImages = document.querySelectorAll(".parallax-img");
 
     function updateParallax(x, y) {
         parallaxImages.forEach(img => {
             let speed = parseFloat(img.getAttribute("data-speed"));
-            let xOffset = ((window.innerWidth / 2 - x) * speed) / 30;  
-            let yOffset = ((window.innerHeight / 2 - y) * speed) / 30;  
+            let xOffset = ((window.innerWidth / 2 - x) * speed) / 30;
+            let yOffset = ((window.innerHeight / 2 - y) * speed) / 30;
             img.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
         });
     }
@@ -371,14 +368,14 @@ document.addEventListener("DOMContentLoaded", () => {
             let x = event.gamma;
             let y = event.beta;
             if (x !== null && y !== null) {
-                let mappedX = (x + 180) * (window.innerWidth / 360); 
+                let mappedX = (x + 180) * (window.innerWidth / 360);
                 let mappedY = (y + 180) * (window.innerHeight / 360);
                 updateParallax(mappedX, mappedY);
             }
         });
     }
 
-    // === ЛОГИКА АДАПТИВНОГО ЗАГОЛОВКА (ОДНА СТРОКА) ===
+    // === АДАПТИВНЫЙ ЗАГОЛОВОК ===
     function adjustTextSize() {
         document.querySelectorAll('.hero-text h1, .hero-text p').forEach(fitTextToOneLine);
     }
@@ -387,8 +384,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let container = element.parentElement;
         let maxWidth = container.clientWidth;
         let fontSize = 100;
-        
-        element.style.whiteSpace = "nowrap";  // В одну строку
+
+        element.style.whiteSpace = "nowrap";
         element.style.fontSize = fontSize + "px";
 
         while ((element.scrollWidth > maxWidth) && fontSize > 10) {
@@ -402,20 +399,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener('resize', adjustTextSize);
     window.addEventListener('load', () => {
-        setTimeout(adjustTextSize, 100); // Даём браузеру дорисовать страницу
+        setTimeout(adjustTextSize, 100);
     });
- // Открытие всплывающего окна
-  function openPopup(event) {
-    event.preventDefault();
-    document.getElementById('popup').style.display = 'block';
-    document.getElementById('popup-overlay').style.display = 'block';
-  }
 
-  // Закрытие всплывающего окна
-  function closePopup() {
-    document.getElementById('popup').style.display = 'none';
-    document.getElementById('popup-overlay').style.display = 'none';
-  }
-    </script>
+    // === ВСПЛЫВАЮЩЕЕ ОКНО ===
+    window.openPopup = function(event) {
+        event.preventDefault();
+        document.getElementById('popup').style.display = 'block';
+        document.getElementById('popup-overlay').style.display = 'block';
+    }
+
+    window.closePopup = function() {
+        document.getElementById('popup').style.display = 'none';
+        document.getElementById('popup-overlay').style.display = 'none';
+    }
+});
+</script>
+        
 </body>
 </html>
