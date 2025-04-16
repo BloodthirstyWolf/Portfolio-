@@ -1,361 +1,375 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кейс: Продвижение кафе</title>
-    <style>
-        @font-face {
-            font-family: 'Impact';
-            src: url('Impact_Regular.ttf') format('truetype');
-        }
-        @font-face {
-            font-family: 'Bebas Neue';
-            src: url('Bebas_Neue.ttf') format('truetype');
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Кейс: Продвижение кафе</title>
+  <style>
+    @font-face {
+      font-family: 'Impact';
+      src: url('Impact_Regular.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Bebas Neue';
+      src: url('Bebas_Neue.ttf') format('truetype');
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-       html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-main {
-  flex: 1;
-}
+    html, body {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
 
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
 
- .section {
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            z-index: 5;
-        .hero {
-            background: #fee6ed;
-            flex-direction: column;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-        .hero .hero-text {
-            z-index: 0;
-            font-family: 'Impact', sans-serif;
-            width: 80vw;
-        }
-        
-        .hero-text h1,
-        .hero-text p {
-            width: 100%;
-            white-space: nowrap;
-            overflow: visible;
-            font-size: 10vw;
-        }
+    .section {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 5;
+    }
 
-        .hero-text h1 {
-            font-family: 'Impact', sans-serif;
-            font-size: clamp(1rem, 10vw, 6rem);
-            line-height: 1;
-        }
+    .hero {
+      background: #fee6ed;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      display: flex;
+    }
 
-        .hero-text p {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(0.8rem, 6vw, 4rem);
-            line-height: 1;
-        }
+    .hero .hero-text {
+      z-index: 0;
+      font-family: 'Impact', sans-serif;
+      width: 80vw;
+    }
 
-        .parallax-img {
-            position: absolute;
-            width: 15vw;
-            height: auto;
-            transition: transform 0.1s ease-out;
-            z-index: 100;
-            pointer-events: none;
-        }
+    .hero-text h1,
+    .hero-text p {
+      width: 100%;
+      white-space: nowrap;
+      overflow: visible;
+      font-size: 10vw;
+    }
 
-        .parallax-img-small {
-            width: 10vw;
-            z-index: -5;
-        }
+    .hero-text h1 {
+      font-family: 'Impact', sans-serif;
+      font-size: clamp(1rem, 10vw, 6rem);
+      line-height: 1;
+    }
 
-        .container2 {
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(to bottom, #fee6ed, #dbeafe);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    .hero-text p {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(0.8rem, 6vw, 4rem);
+      line-height: 1;
+    }
 
-        .result-container {
-            width: 40%;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10%;
-            text-align: center;
-        }
+    .parallax-img {
+      position: absolute;
+      width: 15vw;
+      height: auto;
+      transition: transform 0.1s ease-out;
+      z-index: 100;
+      pointer-events: none;
+    }
 
-        .result {
-            background: white;
-            width: 250px;
-            height: 250px;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+    .parallax-img-small {
+      width: 10vw;
+      z-index: -5;
+    }
 
-        .result:hover {
-            transform: translateY(-5px);
-        }
-
-        .icon {
-    font-size: 2rem; /* Увеличиваем эмодзи */
-    margin-bottom: 10px; /* Отступ вниз */
-}
-.site-footer {
-  background: linear-gradient(to top, #001f3f, #003366); /* тот самый синий градиент */
-  color: white;
-  text-align: center;
-  padding: 40px 20px;
-  margin-top: auto;
-  width: 100%;
-}
-
-.site-footer h3 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-}
-
-.cta-link {
-  color: #ffdc33;
-  text-decoration: underline;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.cta-link:hover {
-  color: #ffffff;
-}
-
-.contacts {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.contacts img {
-  width: 40px;
-  height: 40px;
-}
-
-
-        @media (max-width: 768px) {
-            .container2 {
-    width: 100vw;
-    height: auto; /* В мобильной версии высота будет автоматически рассчитываться */
-    min-height: 100vh; /* Гарантирует, что секция будет занимать хотя бы всю высоту экрана */
-    background: linear-gradient(to bottom, #fee6ed, #dbeafe);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.result-container {
-    width: 40%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10%;
-    text-align: center;
-}
-
-@media (max-width: 768px) {
     .container2 {
-        height: auto;
-        min-height: 100vh; /* Гарантируем, что в мобильной версии контейнер всё равно растягивается на весь экран */
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(to bottom, #fee6ed, #dbeafe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .result-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; /* Равномерно распределим элементы по вертикали */
-        align-items: center; /* Центрируем по горизонтали */
-        width: 100%; /* Растягиваем контейнер по ширине */
+      width: 40%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10%;
+      text-align: center;
     }
 
     .result {
+      background: white;
+      width: 250px;
+      height: 250px;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .result:hover {
+      transform: translateY(-5px);
+    }
+
+    .icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .site-footer {
+      background: linear-gradient(to top, #001f3f, #003366);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: auto;
+      width: 100%;
+    }
+
+    .site-footer h3 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .cta-link {
+      color: #ffdc33;
+      text-decoration: underline;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .cta-link:hover {
+      color: #ffffff;
+    }
+
+    .contacts {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .contacts img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.5);
+      display: none;
+      z-index: 200;
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      z-index: 201;
+      display: none;
+      max-width: 90vw;
+      width: 400px;
+    }
+
+    .popup input, .popup textarea, .popup button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      font-family: sans-serif;
+    }
+
+    @media (max-width: 768px) {
+      .container2 {
+        height: auto;
+        min-height: 100vh;
+      }
+
+      .result-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      .result {
         width: 90%;
         height: auto;
         margin-bottom: 20px;
+      }
     }
-}
-
-    </style>
+  </style>
 </head>
 <body>
+  <main>
     <div class="section hero">
-        <div class="hero-text">
-            <h1>Как я помогла кафе продвинуть уникальный продукт</h1>
-            <p>Публикация привела к росту ссылочной массы и помогла бренду привлечь новых клиентов.</p>
-        </div>
+      <div class="hero-text">
+        <h1>Как я помогла кафе продвинуть уникальный продукт</h1>
+        <p>Публикация привела к росту ссылочной массы и помогла бренду привлечь новых клиентов.</p>
+      </div>
 
-        <!-- Мелкие изображения -->
-        <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 10%; left: 10%;" data-speed="10">
-        <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 40%; left: 50%;" data-speed="8">
-        <img src="yogurt5.png" class="parallax-img parallax-img-small" style="top: 60%; left: 80%;" data-speed="6">
-        <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 80%; left: 40%;" data-speed="4">
-        <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 10%; left: 0%;" data-speed="2">
+      <!-- Мелкие изображения -->
+      <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 10%; left: 10%;" data-speed="10">
+      <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 40%; left: 50%;" data-speed="8">
+      <img src="yogurt5.png" class="parallax-img parallax-img-small" style="top: 60%; left: 80%;" data-speed="6">
+      <img src="yogurt3.webp" class="parallax-img parallax-img-small" style="top: 80%; left: 40%;" data-speed="4">
+      <img src="yogurt4.webp" class="parallax-img parallax-img-small" style="top: 10%; left: 0%;" data-speed="2">
 
-        <!-- Большие изображения -->
-        <img src="yogurt1.png" class="parallax-img" style="top: 60%; left: 5%;" data-speed="15">
-        <img src="yogurt2.png" class="parallax-img" style="top: -10%; left: 50%;" data-speed="12">
-        <img src="yogurt1.png" class="parallax-img" style="top: 90%; left: 80%;" data-speed="10">
+      <!-- Большие изображения -->
+      <img src="yogurt1.png" class="parallax-img" style="top: 60%; left: 5%;" data-speed="15">
+      <img src="yogurt2.png" class="parallax-img" style="top: -10%; left: 50%;" data-speed="12">
+      <img src="yogurt1.png" class="parallax-img" style="top: 90%; left: 80%;" data-speed="10">
     </div>
 
     <div class="container2">
-        <div class="result-container">
-    <div class="result">
-    <div class="icon">📈</div>
-    <div class="number">10%</div>
-    <p>Рост трафика</p>
-</div>
-<div class="result">
-    <div class="icon">🕒</div>
-    <div class="number">+35%</div>
-    <p>Время на странице</p>
-</div>
-<div class="result">
-    <div class="icon">📝</div>
-    <div class="number">5+</div>
-    <p>Статей в топе</p>
-</div>
-<div class="result">
-    <div class="icon">💬</div>
-    <div class="number">X2</div>
-    <p>Рост комментариев</p>
-</div>
-
+      <div class="result-container">
+        <div class="result">
+          <div class="icon">📈</div>
+          <div class="number">10%</div>
+          <p>Рост трафика</p>
+        </div>
+        <div class="result">
+          <div class="icon">🕒</div>
+          <div class="number">+35%</div>
+          <p>Время на странице</p>
+        </div>
+        <div class="result">
+          <div class="icon">📝</div>
+          <div class="number">5+</div>
+          <p>Статей в топе</p>
+        </div>
+        <div class="result">
+          <div class="icon">💬</div>
+          <div class="number">X2</div>
+          <p>Рост комментариев</p>
+        </div>
+      </div>
     </div>
-<footer class="site-footer">
-  <h3>Связаться со мной можно <span class="cta-link" onclick="openPopup(event)">здесь</span>:</h3>
-  <div class="contacts">
-    <a href="mailto:lina.copywrite@gmail.com">
-      <img src="email_icon.png" alt="Email">
-    </a>
-    <a href="https://t.me/BloodthirstywoIf" target="_blank">
-      <img src="telegram_icon.png" alt="Telegram">
-    </a>
-    <a href="https://wa.me/77057722062" target="_blank">
-      <img src="whatsapp_icon.png" alt="WhatsApp">
-    </a>
-  </div>
-</footer>
+  </main>
 
+  <footer class="site-footer">
+    <h3>Связаться со мной можно <span class="cta-link" onclick="openPopup(event)">здесь</span>:</h3>
+    <div class="contacts">
+      <a href="mailto:lina.copywrite@gmail.com">
+        <img src="email_icon.png" alt="Email">
+      </a>
+      <a href="https://t.me/BloodthirstywoIf" target="_blank">
+        <img src="telegram_icon.png" alt="Telegram">
+      </a>
+      <a href="https://wa.me/77057722062" target="_blank">
+        <img src="whatsapp_icon.png" alt="WhatsApp">
+      </a>
+    </div>
+  </footer>
 
-<!-- Всплывающее окно -->
-<div class="popup-overlay" id="popup-overlay" onclick="closePopup()"></div>
-<div class="popup" id="popup">
+  <!-- Всплывающее окно -->
+  <div class="popup-overlay" id="popup-overlay" onclick="closePopup()"></div>
+  <div class="popup" id="popup">
     <h2>Запрос на сотрудничество</h2>
     <form action="https://formspree.io/f/myzyjkev" method="POST">
-        <label for="name">Ваше имя:</label>
-        <input type="text" id="name" name="name" required placeholder="Иван">
+      <label for="name">Ваше имя:</label>
+      <input type="text" id="name" name="name" required placeholder="Иван">
 
-        <label for="email">Ваш Email:</label>
-        <input type="email" id="email" name="email" required placeholder="Ivan.Ivanov@mail.ru">
+      <label for="email">Ваш Email:</label>
+      <input type="email" id="email" name="email" required placeholder="Ivan.Ivanov@mail.ru">
 
-        <label for="message">Чем я могу вам помочь?:</label>
-        <textarea id="message" name="message" required placeholder="Сообщение" rows="4"></textarea>
+      <label for="message">Чем я могу вам помочь?:</label>
+      <textarea id="message" name="message" required placeholder="Сообщение" rows="4"></textarea>
 
-        <button type="submit">Отправить</button>
+      <button type="submit">Отправить</button>
     </form>
-</div>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const parallaxImages = document.querySelectorAll(".parallax-img");
+  </div>
 
-    function updateParallax(x, y) {
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const parallaxImages = document.querySelectorAll(".parallax-img");
+
+      function updateParallax(x, y) {
         parallaxImages.forEach(img => {
-            let speed = parseFloat(img.getAttribute("data-speed"));
-            let xOffset = ((window.innerWidth / 2 - x) * speed) / 30;
-            let yOffset = ((window.innerHeight / 2 - y) * speed) / 30;
-            img.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+          let speed = parseFloat(img.getAttribute("data-speed"));
+          let xOffset = ((window.innerWidth / 2 - x) * speed) / 30;
+          let yOffset = ((window.innerHeight / 2 - y) * speed) / 30;
+          img.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
         });
-    }
+      }
 
-    document.addEventListener("mousemove", (e) => {
+      document.addEventListener("mousemove", (e) => {
         if (!window.isMobile) updateParallax(e.clientX, e.clientY);
-    });
+      });
 
-    function isMobileDevice() {
+      function isMobileDevice() {
         return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    }
-    window.isMobile = isMobileDevice();
+      }
+      window.isMobile = isMobileDevice();
 
-    if (window.isMobile && window.DeviceOrientationEvent) {
+      if (window.isMobile && window.DeviceOrientationEvent) {
         window.addEventListener("deviceorientation", (event) => {
-            let x = event.gamma;
-            let y = event.beta;
-            if (x !== null && y !== null) {
-                let mappedX = (x + 180) * (window.innerWidth / 360);
-                let mappedY = (y + 180) * (window.innerHeight / 360);
-                updateParallax(mappedX, mappedY);
-            }
+          let x = event.gamma;
+          let y = event.beta;
+          if (x !== null && y !== null) {
+            let mappedX = (x + 180) * (window.innerWidth / 360);
+            let mappedY = (y + 180) * (window.innerHeight / 360);
+            updateParallax(mappedX, mappedY);
+          }
         });
-    }
+      }
 
-    // === АДАПТИВНЫЙ ЗАГОЛОВОК ===
-    function adjustTextSize() {
+      function adjustTextSize() {
         document.querySelectorAll('.hero-text h1, .hero-text p').forEach(fitTextToOneLine);
-    }
+      }
 
-    function fitTextToOneLine(element) {
+      function fitTextToOneLine(element) {
         let container = element.parentElement;
         let maxWidth = container.clientWidth;
         let fontSize = 100;
-
         element.style.whiteSpace = "nowrap";
         element.style.fontSize = fontSize + "px";
-
         while ((element.scrollWidth > maxWidth) && fontSize > 10) {
-            fontSize -= 1;
-            element.style.fontSize = fontSize + "px";
+          fontSize -= 1;
+          element.style.fontSize = fontSize + "px";
         }
-    }
+      }
 
-    const resizeObserver = new ResizeObserver(adjustTextSize);
-    resizeObserver.observe(document.querySelector(".hero-text"));
+      const resizeObserver = new ResizeObserver(adjustTextSize);
+      resizeObserver.observe(document.querySelector(".hero-text"));
 
-    window.addEventListener('resize', adjustTextSize);
-    window.addEventListener('load', () => {
+      window.addEventListener('resize', adjustTextSize);
+      window.addEventListener('load', () => {
         setTimeout(adjustTextSize, 100);
-    });
+      });
 
-    // === ВСПЛЫВАЮЩЕЕ ОКНО ===
-    window.openPopup = function(event) {
+      window.openPopup = function(event) {
         event.preventDefault();
         document.getElementById('popup').style.display = 'block';
         document.getElementById('popup-overlay').style.display = 'block';
-    }
+      }
 
-    window.closePopup = function() {
+      window.closePopup = function() {
         document.getElementById('popup').style.display = 'none';
         document.getElementById('popup-overlay').style.display = 'none';
-    }
-});
-</script>
-        
+      }
+    });
+  </script>
 </body>
 </html>
