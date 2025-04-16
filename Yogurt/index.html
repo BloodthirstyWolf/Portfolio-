@@ -19,12 +19,18 @@
             padding: 0;
             box-sizing: border-box;
         }
-        body {
-            font-family: Arial, sans-serif;
-            background: white;
-            overflow-x: hidden;
-        }
-        .section {
+       html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+ {
             width: 100vw;
             height: 100vh;
             display: flex;
@@ -119,108 +125,41 @@
     font-size: 2rem; /* Увеличиваем эмодзи */
     margin-bottom: 10px; /* Отступ вниз */
 }
+.site-footer {
+  background: linear-gradient(to top, #001f3f, #003366); /* тот самый синий градиент */
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: auto;
+  width: 100%;
+}
 
+.site-footer h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
 
+.cta-link {
+  color: #ffdc33;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
 
-footer {
-        background-color: #3e7bb7; /* Синий фон для футера */
-        color: white;
-        padding: 20px;
-        text-align: center;
-    }
+.cta-link:hover {
+  color: #ffffff;
+}
 
-    footer h3 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-    }
+.contacts {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
 
-    .cta-link {
-        color: #ffdc33;
-        font-weight: bold;
-        cursor: pointer;
-        text-decoration: underline;
-    }
-
-    .cta-link:hover {
-        color: #ffcc00;
-    }
-
-    .contacts {
-        margin-top: 10px;
-    }
-
-    .contacts a {
-        margin: 0 10px;
-        color: white;
-        font-size: 1.5rem;
-    }
-
-    .contacts a:hover {
-        color: #ffdc33;
-    }
-
-    /* Стиль для всплывающего окна */
-    .popup-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 100;
-    }
-
-    .popup {
-        display: none;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        width: 80%;
-        max-width: 500px;
-        z-index: 101;
-    }
-
-    .popup h2 {
-        color: #3e7bb7;
-        margin-bottom: 20px;
-    }
-
-    .popup form label {
-        display: block;
-        margin-bottom: 5px;
-        color: #333;
-    }
-
-    .popup input,
-    .popup textarea {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 1rem;
-    }
-
-    .popup button {
-        background-color: #3e7bb7;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        border: none;
-        font-size: 1rem;
-        cursor: pointer;
-    }
-
-    .popup button:hover {
-        background-color: #2d5d8e;
-    }
-
+.contacts img {
+  width: 40px;
+  height: 40px;
+}
 
 
         @media (max-width: 768px) {
@@ -309,20 +248,21 @@ footer {
 </div>
 
     </div>
-<footer>
-    <h3>Связаться со мной можно <a href="#" onclick="openPopup()" class="cta-link">здесь</a>;</h3>
-    <div class="contacts">
-        <a href="mailto:lina.copywrite@gmail.com">
-            <img src="email_icon.png" alt="Email">
-        </a>
-        <a href="https://t.me/BloodthirstywoIf" target="_blank">
-            <img src="telegram_icon.png" alt="Telegram">
-        </a>
-        <a href="https://wa.me/77057722062" target="_blank">
-            <img src="whatsapp_icon.png" alt="WhatsApp">
-        </a>
-    </div>
+<footer class="site-footer">
+  <h3>Связаться со мной можно <span class="cta-link" onclick="openPopup(event)">здесь</span>:</h3>
+  <div class="contacts">
+    <a href="mailto:lina.copywrite@gmail.com">
+      <img src="email_icon.png" alt="Email">
+    </a>
+    <a href="https://t.me/BloodthirstywoIf" target="_blank">
+      <img src="telegram_icon.png" alt="Telegram">
+    </a>
+    <a href="https://wa.me/77057722062" target="_blank">
+      <img src="whatsapp_icon.png" alt="WhatsApp">
+    </a>
+  </div>
 </footer>
+
 
 <!-- Всплывающее окно -->
 <div class="popup-overlay" id="popup-overlay" onclick="closePopup()"></div>
