@@ -12,61 +12,74 @@
     color: #111;
     line-height: 1.6;
   }
+
+  /* Огромный контейнер с отступами со всех сторон */
   .container {
     max-width: 960px;
-    margin: auto;
-    padding: 40px 20px;
+    margin: 40px auto;
+    padding: 40px;
+    box-sizing: border-box;
   }
+
   h1, h2 {
     color: #1a237e; /* акцентный цвет */
     margin-bottom: 20px;
   }
+
   .key-metrics {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
   }
+
   .metric {
     text-align: center;
   }
+
   .metric h3 {
     font-size: 32px;
     margin: 0;
     color: #1a237e;
   }
+
   .metric p {
     margin: 5px 0 0 0;
     font-weight: bold;
   }
+
   .block {
     display: flex;
     align-items: center;
     margin-bottom: 60px;
   }
+
+  /* Чередование блоков */
   .block:nth-child(even) {
     flex-direction: row-reverse;
   }
+
+  /* Убираем внутренние паддинги у блоков, они будут у контейнера */
   .block-text, .block-img {
     flex: 1;
-    padding: 20px;
   }
+
   .block-img img {
     max-width: 100%;
     border: 1px solid #ddd;
     border-radius: 8px;
   }
+
   .block-text h2 {
     margin-top: 0;
   }
+
   .block-text p {
     margin-bottom: 10px;
   }
+
   @media (max-width: 768px) {
     .block {
       flex-direction: column !important;
-    }
-    .block-img, .block-text {
-      padding: 10px;
     }
   }
 </style>
