@@ -8,12 +8,11 @@
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: #fff;
+    background: #f4f4f7;
     color: #111;
     line-height: 1.6;
   }
 
-  /* Огромный контейнер с отступами со всех сторон */
   .container {
     max-width: 960px;
     margin: 40px auto;
@@ -22,18 +21,31 @@
   }
 
   h1, h2 {
-    color: #1a237e; /* акцентный цвет */
+    color: #1a237e;
     margin-bottom: 20px;
   }
 
+  /* Метрики в карточках */
   .key-metrics {
     display: flex;
     justify-content: space-around;
     margin-bottom: 60px;
+    flex-wrap: wrap;
+    gap: 20px;
   }
 
   .metric {
+    flex: 1 1 150px;
     text-align: center;
+    background: #e3f2fd;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+  }
+
+  .metric:hover {
+    transform: translateY(-4px);
   }
 
   .metric h3 {
@@ -47,26 +59,29 @@
     font-weight: bold;
   }
 
+  /* Блоки в карточках */
   .block {
     display: flex;
     align-items: center;
     margin-bottom: 60px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
   }
 
-  /* Чередование блоков */
   .block:nth-child(even) {
     flex-direction: row-reverse;
   }
 
-  /* Убираем внутренние паддинги у блоков, они будут у контейнера */
   .block-text, .block-img {
     flex: 1;
+    padding: 30px;
   }
 
   .block-img img {
-    max-width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    width: 100%;
+    border-radius: 12px;
   }
 
   .block-text h2 {
@@ -77,9 +92,19 @@
     margin-bottom: 10px;
   }
 
+  /* Адаптив для мобильных */
   @media (max-width: 768px) {
     .block {
-      flex-direction: column !important;
+      flex-direction: column;
+    }
+
+    .block:nth-child(even) {
+      flex-direction: column;
+    }
+
+    .key-metrics {
+      flex-direction: column;
+      align-items: center;
     }
   }
 </style>
@@ -87,10 +112,8 @@
 <body>
 <div class="container">
 
-  <!-- Заголовок -->
   <h1>Кейс: рост Telegram-канала об инвестициях с 6,6k до 92k за 9 месяцев</h1>
 
-  <!-- Ключевые метрики -->
   <div class="key-metrics">
     <div class="metric">
       <h3>x14</h3>
@@ -106,7 +129,6 @@
     </div>
   </div>
 
-  <!-- Блок 1: Задача -->
   <div class="block">
     <div class="block-text">
       <h2>Задача</h2>
@@ -117,7 +139,6 @@
     </div>
   </div>
 
-  <!-- Блок 2: Этап 1 — Органика -->
   <div class="block">
     <div class="block-text">
       <h2>Этап 1 — Органика (0–3 месяца)</h2>
@@ -128,7 +149,6 @@
     </div>
   </div>
 
-  <!-- Блок 3: Этап 2 — Масштабирование -->
   <div class="block">
     <div class="block-text">
       <h2>Этап 2 — Масштабирование (3–9 месяцев)</h2>
@@ -139,7 +159,6 @@
     </div>
   </div>
 
-  <!-- Блок 4: Финальный результат -->
   <div class="block">
     <div class="block-text">
       <h2>Финальный результат</h2>
