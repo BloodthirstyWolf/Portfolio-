@@ -252,26 +252,22 @@
   background-color: #bfdbfe;
 }
 
-.case-final {
-  background: #dbeafe;
-  padding: 4vw;
-  display: flex;
-  justify-content: center;
-
 .case-final .case-content {
-  width: 69vw;
-  background-color: rgba(255, 255, 255, 0.95);
+  max-width: 800px;
+  background-color: rgba(255, 255, 255, 0.95); /* полупрозрачный фон */
   padding: 3vw;
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   display: flex;
   flex-direction: column;
   gap: 1.5em;
-  font-family: Nunito-ExtraBold;
-  font-weight: 900;
+}
 
-
-    
+.case-final p {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #111;
+}
 
     @media (max-width: 768px) {
       .container2 {
