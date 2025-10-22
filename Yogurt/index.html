@@ -282,6 +282,51 @@
 }
 
 
+/* Кнопка */
+.contact-btn {
+  margin-top: 2em;
+  align-self: center;
+  background-color: #ffdc33;
+  color: #000;
+  padding: 0.8em 2em;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.contact-btn:hover {
+  background-color: #e6c200;
+  transform: scale(1.05);
+}
+
+/* Футер с «ссылка в тексте» */
+.contact-footer {
+  padding: 3vw 0;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-footer p {
+  font-size: 1.2rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.contact-footer .contact-link {
+  color: #ffdc33;
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom 0.2s;
+}
+
+.contact-footer .contact-link:hover {
+  border-bottom: 1px solid #ffdc33;
+}
+
     
 
     @media (max-width: 768px) {
@@ -382,11 +427,12 @@
   </div>
 </section>
 
-  <section class="cta-button">
-     <div class="button">
-          <h3>Связаться со мной можно <span class="cta-link" onclick="openPopup(event)">здесь</span></h3>
-       </div>
-  </section>
+  <footer class="contact-footer">
+  <p>
+    <span>Связаться со мной можно</span>
+    <a href="#contact" class="contact-link">здесь</a>
+  </p>
+</footer>
   
   <!-- Всплывающее окно -->
   <div class="popup-overlay" id="popup-overlay" onclick="closePopup()"></div>
