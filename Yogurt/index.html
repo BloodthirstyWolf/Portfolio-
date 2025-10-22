@@ -252,22 +252,33 @@
   background-color: #bfdbfe;
 }
 
+.case-final {
+  background: linear-gradient(to bottom, #a0d8f1, #ffffff); /* мягкий голубой градиент */
+  padding: 4vw;
+  display: flex;
+  justify-content: center;
+}
+
 .case-final .case-content {
-  max-width: 800px;
-  background-color: #dbeafe;
+  width: 69vw;
+  background-color: rgba(255, 255, 255, 0.95);
   padding: 3vw;
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   display: flex;
   flex-direction: column;
   gap: 1.5em;
-}
 
 .case-final p {
-  font-size: 1.2rem;
-  line-height: 1.7;
-  color: #111;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: #2d030f;
+  font-family: 'Nunito-ExtraBold', sans-serif;
+  font-weight: 900;
 }
+
+
+    
 
     @media (max-width: 768px) {
       .container2 {
@@ -364,12 +375,10 @@
     <p>Мы знали, что обычной рекламе в лоб тут не место — людям важно понимать, чем этот продукт лучше привычного мороженого. Поэтому сделали ставку на один ёмкий, грамотно выстроенный материал на авторитетной площадке. Статья вышла не сухой, а лёгкой и вкусной — так, чтобы читатель не пролистал мимо, а задержался и захотел попробовать.</p>
     <p>Результат не заставил себя ждать: публикация дала рост органического трафика, увеличила время на сайте и собрала комментарии. Более того, она подтянула ссылочную массу и вывела бренд в обсуждениях, что напрямую работает на узнаваемость и новые заказы.</p>
     <p>И всё это — без затянутых сроков и лишних согласований: материал вышел вовремя, а клиент получил именно то, чего ждал — инструмент продвижения, который окупается сам собой.</p>
+
+        <h3>Связаться со мной можно <span class="cta-link" onclick="openPopup(event)">здесь</span></h3>
   </div>
 </section>
-
-  <footer class="site-footer">
-    <h3>Связаться со мной можно <span class="cta-link" onclick="openPopup(event)">здесь</span></h3>
-  </footer>
   
   <!-- Всплывающее окно -->
   <div class="popup-overlay" id="popup-overlay" onclick="closePopup()"></div>
@@ -458,6 +467,9 @@
         document.getElementById('popup-overlay').style.display = 'none';
       }
     });
+  </script>
+</body>
+</html>
   </script>
 </body>
 </html>
