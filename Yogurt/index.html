@@ -329,19 +329,22 @@
   border-bottom: 1px solid #ffdc33;
 }
 
-.contact-link {
+.contact-footer .contact-link {
   position: relative;
+  display: inline-block;
   padding: 0.3em 0.6em;
   border-radius: 12px;
-  background-color: #fff;
+  background-color: #fff; /* белый фон */
+  color: #000; /* черный текст */
+  text-decoration: none;
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.contact-link:hover {
+.contact-footer .contact-link:hover {
   transform: scale(1.15);
+  background-color: #fff; /* чтобы фон не менялся */
+  color: #000; /* текст тоже */
 }
-
-
 
     
 
