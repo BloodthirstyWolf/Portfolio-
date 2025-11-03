@@ -177,6 +177,30 @@
             <h2>Кейсы по духовным практикам</h2>
             <p>Каждый проект, за который я берусь, будь то астрология, таро или родовая магиия, опирается на глубокое понимание психологии целевой аудитории и их стремления к личностному росту и гармонии. Благодаря этому я создаю контент, который не просто информирует, но и вдохновляет, вызывая эмоциональный отклик и побуждая к действию.</p>
         </div>
+<footer class="contact-footer">
+  <p>
+    <span>Связаться со мной можно</span>
+    <a href="#" class="contact-link" onclick="openPopup(event)">здесь</a>
+  </p>
+</footer>
+
+  
+  <!-- Всплывающее окно --> 
+  <div class="popup-overlay" id="popup-overlay" onclick="closePopup()"></div> 
+  <div class="popup" id="popup"> 
+    <h2>Запрос на сотрудничество</h2> 
+    <form action="https://formspree.io/f/myzyjkev" method="POST"> 
+      <label for="name">Ваше имя:</label> 
+      <input type="text" id="name" name="name" required placeholder="Иван"> 
+      <label for="email">Ваш Email или ник в TG:</label> 
+      <input type="text" id="contact" name="contact" required placeholder="@IvanIvanov"> 
+      <label for="message">Чем я могу вам помочь?:</label> 
+      <textarea id="message" name="message" required placeholder="Сообщение" rows="4">
+      </textarea> 
+      <button type="submit">Отправить</button> 
+    </form> 
+  </div>
+        
     </section>
 
     <section class="cases">
