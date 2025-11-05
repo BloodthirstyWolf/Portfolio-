@@ -18,15 +18,17 @@
   justify-content: space-between;
   align-items: stretch;
   gap: 20px;
-  filter: grayscale(1) sepia(1) brightness(0.7) hue-rotate(0deg) saturate(3);
+}
+
+.special-frame {
+filter: grayscale(1) sepia(1) brightness(0.7) hue-rotate(0deg) saturate(3);
   transition: filter 0.5s ease; /* плавный переход фильтра */
 }
-
-.Flexbox-container:hover {
+    
+.special-frame:hover {
   filter: none; /* или filter: grayscale(0) sepia(0) brightness(1) saturate(1); */
 }
-
-
+    
     /* Скрыть русский текст по умолчанию */
     .frame-description-ru {
       display: none;
@@ -310,6 +312,7 @@
 </body>
 
 </html>
+
 
 
 
