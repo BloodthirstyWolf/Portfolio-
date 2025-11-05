@@ -124,6 +124,98 @@
             height: 5vw;
         }
 
+        /* Стиль для кнопки */
+    .contact-button {
+      display: inline-block;
+      background-color: #000000; /* Черный фон */
+      color: #ffdc33; /* Золотой цвет текста */
+      padding: 15px 20px;
+      font-size: 1.5vw;
+      border-radius: 25px;
+      border: 2px solid #ffdc33; /* Золотая рамка */
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .text-container p {
+  font-size: 18px;
+  color: #fff; /* Цвет текста */
+  text-align: center;
+}
+
+.text-container a.contact-button {
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline-block;
+}
+    
+    /* Стиль кнопки при наведении */
+    .contact-button:hover {
+      background-color: #ffdc33;
+      color: #000000; /* Черный текст при наведении */
+      transform: scale(1.1);
+    }
+
+    /* Стиль для всплывающего окна */
+    .popup {
+      display: none; /* Скрыто по умолчанию */
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #000000;
+      border: 2px solid #ffdc33;
+      border-radius: 10px;
+      padding: 20px;
+      width: 400px;
+      z-index: 1000;
+    }
+
+    /* Стиль для формы внутри всплывающего окна */
+    .popup form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .popup input, .popup textarea {
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 2px solid #ffdc33;
+    }
+
+    .popup button {
+      padding: 10px;
+      background-color: #ffdc33;
+      color: #000000;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    /* Стиль для кнопки отправки */
+    .popup button:hover {
+      background-color: #ffb300;
+    }
+
+    /* Фон для затемнения при открытом окне */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+    }
+
         /* Настройки для мобильных устройств */
         @media (max-width: 768px) {
             header {
@@ -161,177 +253,58 @@
                 height: 10vw;
             }
 
-        .popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: none;
-  z-index: 200;
-}
-
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-  z-index: 201;
-  display: none;
-  max-width: 90vw;
-  width: 400px;
-  font-family: sans-serif;
-}
-
-
-    .popup input, .popup textarea, .popup button {
-      width: 100%;
-      margin-top: 10px;
-      padding: 10px;
-      font-family: sans-serif;
-    }
-
-.popup input,
-.popup textarea,
-.popup button {
-  width: 100%;
-  margin-top: 10px;
-  padding: 12px 16px;
-  border: none;
-  border-radius: 12px;
-  font-family: sans-serif;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  outline: none;
-  font-size: 1rem;
-}
-
-.popup button {
-  background-color: #dbeafe;
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.popup button:hover {
-  background-color: #bfdbfe;
-}
-
-.case-final {
-  background: #dbeafe;
-  padding: 4vw;
-  display: flex;
-  justify-content: center;
-}
-
-.case-final .case-content {
-  width: 75vw;
-  background-color: rgba(255, 255, 255, 0.95);
-  padding: 3vw;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  display: flex;
-  flex-direction: column;
-  gap: 1.5em;
-  font-family: Nunito-ExtraBold;
-  font-size: 1.3em;
-  font-weight: 900;
-  color: #2d0410;
-}
-
-.case-final p {
-  font-size: 1.5rem;
-  line-height: 1.5;
-  color: #2d030f;
-  font-family: 'Nunito-ExtraBold', sans-serif;
-  font-weight: 900;
-}
-
-
-/* Кнопка */
-.contact-btn {
-  margin-top: 2em;
-  align-self: center;
-  background-color: #ffdc33;
-  color: #000;
-  padding: 0.8em 2em;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: transform 0.3s, background-color 0.3s;
-}
-
-.contact-btn:hover {
-  background-color: #e6c200;
-  transform: scale(1.05);
+            .contact-button {
+  padding: 4% 4%;
+  font-size: 4vw;
+  border-radius: 40px;
 }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1 onclick="window.location.href='https://seolina.rf.gd/?i=1'">Главная</h1>
-    </header>
+   <section class="hero">
+    <div class="image-container">
+        <img src="Image.png" alt="Астрологический символ">
+    </div>
+    <div class="intro-text">
+        <h2>52 продажи за 17 дней без рекламы. Как я помогла продать мастер-класс по магии рода на 643 188₽.</h2>
+        <p>Вы получите готовую стратегию прогрева аудитории, которая привлекает людей к вашему продукту органически, без рекламы. Система email-цепочек и продуманных Telegram-постов ведёт подписчиков от интереса к покупке, повышает вовлечённость и доверие, чтобы конверсия была максимальной.</p>
+        <p>Результат за 17 дней: 52 продажи на 643 188₽ без единого вложенного рубля.</p>
+        <button class="contact-button" onclick="openPopup(event)">Хочу такой же результат!</button>
+    </div>
+</section>
 
-    <section class="hero">
-        <div class="image-container">
-            <img src="Image.png" alt="Астрологический символ">
-        </div>
-        <div class="intro-text">
-            <h2>Кейсы по духовным практикам</h2>
-            <p>Каждый проект, за который я берусь, будь то астрология, таро или родовая магиия, опирается на глубокое понимание психологии целевой аудитории и их стремления к личностному росту и гармонии. Благодаря этому я создаю контент, который не просто информирует, но и вдохновляет, вызывая эмоциональный отклик и побуждая к действию.</p>
-          <footer class="contact-footer">
-  <p>
-    <span>Связаться со мной можно</span>
-    <a href="#" class="contact-link" onclick="openPopup(event)">здесь</a>
-  </p>
-</footer>
-        </div>
-    </section>
+<section class="description">
+    <div class="description-text">
+          <p>Заказчица обратилась с задачей: нужно было прогреть аудиторию перед мастер-классом по магии рода. У этих женщин есть своя особенная атмосфера: они верят в силу рода, говорят определёнными словами, у них свой стиль мышления. Даже если ты сам в это не веришь, важно писать так, чтобы они чувствовали: “тут свои, меня понимают”. Я настроилась на этот язык и сделала тексты так, чтобы каждое письмо и пост звучали естественно и органично именно для этой аудитории</p>
+    </div>
+</section>
 
-     <!-- Всплывающее окно --> 
-  <div class="popup-overlay" id="popup-overlay" onclick="closePopup()"></div> 
-  <div class="popup" id="popup"> 
-    <h2>Запрос на сотрудничество</h2> 
-    <form action="https://formspree.io/f/myzyjkev" method="POST"> 
-      <label for="name">Ваше имя:</label> 
-      <input type="text" id="name" name="name" required placeholder="Иван"> 
-      <label for="email">Ваш Email или ник в TG:</label> 
-      <input type="text" id="contact" name="contact" required placeholder="@IvanIvanov"> 
-      <label for="message">Чем я могу вам помочь?:</label> 
-      <textarea id="message" name="message" required placeholder="Сообщение" rows="4">
-      </textarea> 
-      <button type="submit">Отправить</button> 
-    </form> 
-  </div>
 
-    <section class="cases">
-        <div class="case">
-            <h3>Кейс 1: Создание цепочки email и постов для привлечения лидов в сообщество духовного развития</h3>
-            <p>В рамках этого проекта я разработала серию email-писем и постов в Telegram, основываясь на ключевых темах, озвученных лидером в сфере эзотерики и саморазвития. Моей задачей было подвести целевую аудиторию — людей, заинтересованных в личностном росте и раскрытии своего потенциала — к вступлению в сообщество через серию видео, затрагивающих важные аспекты их жизни, такие как женская сила и самореализация. Вот одно из писем:</p>
-            <img src="email_mockup.png" alt="Пример письма">
-        </div>
+<section class="cases">
+    <div class="case">
+        <p>Первым делом я собрала серию email-писем. Они не были сухими инструкциями — наоборот, каждое письмо поднимало важную для этой аудитории тему: женская сила, самореализация, семейные связи. Тексты вели читателя мягко, без давления, и подводили к идее участия в мастер-классе.
 
-        <div class="case">
-            <h3>Кейс 2: Создание контент-плана для воронки, привлекающей на мероприятие</h3>
-            <p>В этом проекте я создала контент-план для воронки, целью которой было привлечение участников на важное событие в сфере духовного роста. План включал серию постов в Telegram, каждый из которых продвигал основные ценности мероприятия и привлекал внимание к ключевым спикерам и темам. В качестве примера привожу текст одного из постов:</p>
-            <img src="phone_mockup.png" alt="Пример поста в Телеграме">
-        </div>
-    </section>
+Сроки были очень жёсткие: Хэллоуин, и переносить кампанию было нельзя. Но даже с этим я успела всё подготовить вовремя — клиент получил готовую серию, которая отлично сработала</p>
+        <img src="email_mockup.png" alt="Пример письма">
+    </div>
+
+    <div class="case">
+        <p>Чтобы усилить прогрев, я подключила Telegram-канал. Там тоже важно было держать нужный тон — не “копирайтерский”, а будто подруга делится мыслями. Посты перекликались с письмами и создавали ощущение единой истории, в которую хотелось вовлечься. В итоге рассылка и посты сработали вместе как система, и аудитория почувствовала, что это не случайный набор текстов, а цельный путь, ведущий к событию.</p>
+        <img src="phone_mockup.png" alt="Пример поста в Телеграме">
+    </div>
+</section>
+
 
     <footer>
-        <h3>Связаться со мной можно здесь</h3>
+        <h3>Связаться со мной можно здесь;</h3>
+  </div>
         <div class="contacts">
-            <a href="mailto:lina.copywrite@mail.ru">
+        <a href="mailto:lina.copywrite@gmail.com">
                 <img src="email_icon.png" alt="Email">
             </a>
-            <a href="https://t.me/@LinaWoIf" target="_blank">
+            <a href="https://t.me/BloodthirstywoIf" target="_blank">
                 <img src="telegram_icon.png" alt="Telegram">
             </a>
             <a href="https://wa.me/77057722062" target="_blank">
@@ -340,19 +313,38 @@
         </div>
     </footer>
 
-<script>
-   window.openPopup = function(event) {
-        event.preventDefault();
-        document.getElementById('popup').style.display = 'block';
-        document.getElementById('popup-overlay').style.display = 'block';
-      }
+<!-- Всплывающее окно -->
+<div class="popup-overlay" id="popup-overlay" onclick="closePopup()"></div>
+<div class="popup" id="popup">
+  <h2 style="color: #ffdc33;">Запрос на сотрудничество</h2>
+  <form action="https://formspree.io/f/myzyjkev" method="POST">
+    <label for="name" style="color: #ffdc33;">Ваше имя:</label>
+    <input type="text" id="name" name="name" required placeholder="Иван">
 
-      window.closePopup = function() {
-        document.getElementById('popup').style.display = 'none';
-        document.getElementById('popup-overlay').style.display = 'none';
-      }
-    });
-  </script>
+    <label for="email" style="color: #ffdc33;">Ваш Email:</label>
+    <input type="email" id="email" name="email" required placeholder="Ivan.Ivanov@mail.ru">
+
+    <label for="message" style="color: #ffdc33;">Чем я могу вам помочь?:</label>
+    <textarea id="message" name="message" required placeholder="Сообщение" rows="4"></textarea>
+
+    <button type="submit" style="background-color: #ffdc33; color: black; padding: 10px 20px; border-radius: 5px;">Отправить</button>
+  </form>
+</div>
+    
+<script>
+  // Открытие всплывающего окна
+  function openPopup(event) {
+    event.preventDefault();  // Предотвращаем стандартное поведение (перенос в начало страницы)
+    document.getElementById('popup').style.display = 'block';
+    document.getElementById('popup-overlay').style.display = 'block';
+  }
+
+  // Закрытие всплывающего окна
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+    document.getElementById('popup-overlay').style.display = 'none';
+    }
+</script>
     
 </body>
 </html>
