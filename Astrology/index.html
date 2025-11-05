@@ -331,23 +331,21 @@
 </footer>
 
 
-<!-- Всплывающее окно -->
-<div class="popup-overlay" id="popup-overlay" onclick="closePopup()"></div>
-<div class="popup" id="popup">
-  <h2 style="color: #ffdc33;">Запрос на сотрудничество</h2>
-  <form action="https://formspree.io/f/myzyjkev" method="POST">
-    <label for="name" style="color: #ffdc33;">Ваше имя:</label>
-    <input type="text" id="name" name="name" required placeholder="Иван">
-
-    <label for="email" style="color: #ffdc33;">Ваш Email:</label>
-    <input type="email" id="email" name="email" required placeholder="Ivan.Ivanov@mail.ru">
-
-    <label for="message" style="color: #ffdc33;">Чем я могу вам помочь?:</label>
-    <textarea id="message" name="message" required placeholder="Сообщение" rows="4"></textarea>
-
-    <button type="submit" style="background-color: #ffdc33; color: black; padding: 10px 20px; border-radius: 5px;">Отправить</button>
-  </form>
-</div>
+  <!-- Всплывающее окно --> 
+  <div class="popup-overlay" id="popup-overlay" onclick="closePopup()"></div> 
+  <div class="popup" id="popup"> 
+    <h2>Запрос на сотрудничество</h2> 
+    <form action="https://formspree.io/f/myzyjkev" method="POST"> 
+      <label for="name">Ваше имя:</label> 
+      <input type="text" id="name" name="name" required placeholder="Иван"> 
+      <label for="email">Ваш Email или ник в TG:</label> 
+      <input type="text" id="contact" name="contact" required placeholder="@IvanIvanov"> 
+      <label for="message">Чем я могу вам помочь?:</label> 
+      <textarea id="message" name="message" required placeholder="Сообщение" rows="4">
+      </textarea> 
+      <button type="submit">Отправить</button> 
+    </form> 
+  </div>
     
 <script>
   // Открытие всплывающего окна
