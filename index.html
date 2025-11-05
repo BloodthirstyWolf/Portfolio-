@@ -13,14 +13,19 @@
       z-index: 1000;
     }
 
-    .text-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      filter: grayscale(1) sepia(1) brightness(0.7) hue-rotate(0deg) saturate(3);
-    }
+   .Flexbox-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 20px;
+  filter: grayscale(1) sepia(1) brightness(0.7) hue-rotate(0deg) saturate(3);
+  transition: filter 0.5s ease; /* плавный переход фильтра */
+}
+
+.Flexbox-container:hover {
+  filter: none; /* или filter: grayscale(0) sepia(0) brightness(1) saturate(1); */
+}
+
 
     /* Скрыть русский текст по умолчанию */
     .frame-description-ru {
@@ -305,6 +310,7 @@
 </body>
 
 </html>
+
 
 
 
