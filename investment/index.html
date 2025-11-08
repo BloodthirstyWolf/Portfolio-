@@ -287,30 +287,42 @@ contact-footer .contact-link {
 /* Футер с «ссылка в тексте» */
 .contact-footer {
   padding: 3vw 0;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   background-color: #f4f4f7;
 }
 
 .contact-footer p {
-  font-size: 1.5vw; /* адаптивный размер */
-  margin: 0;
-  line-height: 1.4; /* можно регулировать */
+  font-size: 1.5rem;
+  color: #000;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 }
 
 .contact-footer .contact-link {
   color: #ffdc33;
   font-weight: bold;
   text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom 0.2s;
+}
+
+.contact-footer .contact-link {
+  position: relative;
+  display: inline-block;
   padding: 0.3em 0.6em;
   border-radius: 25px;
-  background-color: #fff;
+  background-color: #fff; /* белый фон */
+  color: #000; /* черный текст */
+  text-decoration: none;
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .contact-footer .contact-link:hover {
   transform: scale(1.15);
+  color: #000;
 }
-
 
   /* Адаптив для мобильных */
   @media (max-width: 768px) {
