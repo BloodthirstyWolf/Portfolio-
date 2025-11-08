@@ -111,6 +111,25 @@
     .container {
     width: 100vw;
     }
+
+    .contact-footer {
+  padding: 3vw 0;
+  display: flex;
+  justify-content: center;
+  background-color: #f4f4f7;
+}
+
+contact-footer .contact-link {
+  position: relative;
+  display: inline-block;
+  padding: 0.3em 0.6em;
+  border-radius: 25px;
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+    
   }
 </style>
 </head>
@@ -179,6 +198,30 @@
       <img src="screenshot_placeholder3.png" alt="Итоговый рост подписчиков TgStat">
     </div>
   </div>
+
+    <footer class="contact-footer">
+<p>
+    <span>Хотите такой же результат? Связаться со мной можно</span>
+    <a href="#" class="contact-link" onclick="openPopup(event)">здесь</a>
+  </p>
+</footer>
+  
+  <!-- Всплывающее окно --> 
+  <div class="popup-overlay" id="popup-overlay" onclick="closePopup()"></div> 
+  <div class="popup" id="popup"> 
+    <h2>Запрос на сотрудничество</h2> 
+    <form action="https://formspree.io/f/myzyjkev" method="POST"> 
+      <label for="name">Ваше имя:</label> 
+      <input type="text" id="name" name="name" required placeholder="Иван"> 
+      <label for="email">Ваш Email или ник в TG:</label> 
+      <input type="text" id="contact" name="contact" required placeholder="@IvanIvanov"> 
+      <label for="message">Чем я могу вам помочь?:</label> 
+      <textarea id="message" name="message" required placeholder="Сообщение" rows="4">
+      </textarea> 
+      <button type="submit">Отправить</button> 
+    </form> 
+  </div>
+  
 
 </div>
 </body>
